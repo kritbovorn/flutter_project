@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/widgets/side_menu.dart';
+import 'package:flutter_project/widgets/widgets.dart';
 
 class Shell extends StatelessWidget {
   const Shell({Key? key}) : super(key: key);

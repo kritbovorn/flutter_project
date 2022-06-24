@@ -1,4 +1,3 @@
-
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -33,26 +32,31 @@ class MyApp extends StatelessWidget {
         iconTheme: const IconThemeData().copyWith(color: Colors.white),
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
-            headline2: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-            headline4: TextStyle(
-              color: Colors.grey[300],
-              fontWeight: FontWeight.w500,
-              letterSpacing: 2.0,
-            ),
-            bodyText1: TextStyle(
-              color: Colors.grey[300],
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1.0,
-            ),
-            bodyText2: TextStyle(
-              color: Colors.grey[300],
-              letterSpacing: 1.0,
-            )),
+          headline2: const TextStyle(
+            color: Colors.white,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+          headline4: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 2.0,
+          ),
+          bodyText1: TextStyle(
+            color: Colors.grey[300],
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.0,
+          ),
+          bodyText2: TextStyle(
+            color: Colors.grey[300],
+            letterSpacing: 1.0,
+          ),
+        ),
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: MaterialStateProperty.all(Colors.grey[900]),
+        ),
       ),
       // home: const HomeScreen(),
       home: const Shell(),
