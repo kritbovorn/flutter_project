@@ -12,9 +12,14 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,7 +70,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         scrollbarTheme: ScrollbarThemeData(
-          thumbColor: MaterialStateProperty.all(Colors.grey[900]),
+          thumbColor: MaterialStateProperty.all(Colors.grey[800]),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
@@ -86,6 +91,7 @@ class MyApp extends StatelessWidget {
                 .copyWith(letterSpacing: 2, fontWeight: FontWeight.bold),
           ),
         ),
+        dataTableTheme: const DataTableThemeData(),
       ),
       // home: const HomeScreen(),
       home: const Shell(),
