@@ -4,3 +4,7 @@ export './side_menu_icon_widgets.dart';
 export './logo_image_widget.dart';
 export './playlist_header.dart';
 export './tracks_list.dart';
+export './current_track.dart';
+export './track_info.dart';
+export './player_controls.dart';
+export './more_controls.dart';
