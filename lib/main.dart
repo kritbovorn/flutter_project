@@ -1,5 +1,6 @@
+// https://www.youtube.com/watch?v=MkFjtCov62g&list=PLJobkZUVjrBU0UlfCxpBJJXh4ySP8wSps&index=3
+
 import 'package:flutter/material.dart';
-import 'package:flutter_project/counter.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider<Counter>(
-        create: (context) => Counter(),
+      home: ChangeNotifierProvider<ValueNotifier<int>>(
+        create: (context) => ValueNotifier<int>(0),
         child: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
     );
@@ -31,7 +32,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counter = Provider.of<Counter>(context, listen: false);
+    final counter = Provider.of<ValueNotifier<int>>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -43,7 +44,7 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Consumer<Counter>(
+            Consumer<ValueNotifier<int>>(
               builder: (context, value, child) => Text(
                 '${counter.value}',
                 style: Theme.of(context).textTheme.headline4,
@@ -53,7 +54,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
+        onPressed: () => counter.value++,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
