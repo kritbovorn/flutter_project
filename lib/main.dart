@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/models/following.dart';
 import 'package:flutter_project/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => Following(),
+      child: const MaterialApp(
+        title: 'Flutter Demo',
+        home: HomeScreen(),
+      ),
     );
   }
 }
