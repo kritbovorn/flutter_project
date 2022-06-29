@@ -1,9 +1,10 @@
 // https://www.youtube.com/watch?v=t_i5_QHalvk&list=PLgGlvOHs_ZdABf3vwR4GeJZbAyfQzTr9O&index=2
 
 import 'package:flutter/material.dart';
-import 'package:flutter_project/provider_screen/counter.dart';
-import 'package:flutter_project/provider_screen/provider_screen.dart';
+import 'package:flutter_project/change_notifier_provider/counter_notifier.dart';
 import 'package:provider/provider.dart';
+
+import 'change_notifier_provider/change_notifier_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,15 +15,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Provider<Counter>(
-        create: (context) => Counter(),
-        child: const ProviderScreen(),
+    // return MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   // home: Provider<Counter>(
+    //   //   create: (context) => Counter(),
+    //   //   child: const ProviderScreen(),
+    //   // ),
+    //   home: ChangeNotifierProvider(
+    //     // 1. Use ChangeNotifierProvider()
+    //     create: (context) => CounterNotifier(), // 2.  Return Class
+    //     child: const ChangeNotifierProviderScreen(), // 3. Add Screen child
+    //   ),
+    // );
+    return ChangeNotifierProvider(
+      create: (context) => CounterNotifier(),
+      child: const MaterialApp(
+        home: ChangeNotifierProviderScreen(),
       ),
     );
   }
