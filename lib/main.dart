@@ -1,10 +1,10 @@
 // https://www.youtube.com/watch?v=t_i5_QHalvk&list=PLgGlvOHs_ZdABf3vwR4GeJZbAyfQzTr9O&index=2
 
 import 'package:flutter/material.dart';
-import 'package:flutter_project/change_notifier_provider/counter_notifier.dart';
+import 'package:flutter_project/future_provider/data.dart';
+import 'package:flutter_project/future_provider/data_future.dart';
+import 'package:flutter_project/future_provider/future_provider_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'change_notifier_provider/change_notifier_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 1.
     // return MaterialApp(
     //   debugShowCheckedModeBanner: false,
     //   title: 'Flutter Demo',
@@ -31,10 +32,18 @@ class MyApp extends StatelessWidget {
     //     child: const ChangeNotifierProviderScreen(), // 3. Add Screen child
     //   ),
     // );
-    return ChangeNotifierProvider(
-      create: (context) => CounterNotifier(),
+    // 2.
+    // return ChangeNotifierProvider(
+    //   create: (context) => CounterNotifier(),
+    //   child: const MaterialApp(
+    //     home: ChangeNotifierProviderScreen(),
+    //   ),
+    // );
+    return FutureProvider<Data>(
+      initialData: Data(data: 'Initial Data'),
+      create: (_) => loadDataFuture(),
       child: const MaterialApp(
-        home: ChangeNotifierProviderScreen(),
+        home: FutureProviderScreen(),
       ),
     );
   }
