@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/change_notifier_provider/counter_notifier.dart';
 import 'package:flutter_project/future_provider/data.dart';
 import 'package:flutter_project/future_provider/data_future.dart';
+import 'package:flutter_project/multi_provider/multi_provider_screen.dart';
 import 'package:flutter_project/stream_provider/data.dart';
 import 'package:flutter_project/stream_provider/data_stream.dart';
-import 'package:flutter_project/stream_provider/stream_provider_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -59,20 +59,42 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
     // 5. --- Nest Provider
-    return ChangeNotifierProvider<CounterNotifier>(
-      create: (context) => CounterNotifier(),
-      child: FutureProvider<Data>(
-        initialData: Data(data: 'Initial Data'),
-        create: (context) => loadDataFuture(),
-        child: StreamProvider(
+    // return ChangeNotifierProvider<CounterNotifier>(
+    //   create: (context) => CounterNotifier(),
+    //   child: FutureProvider<Data>(
+    //     initialData: Data(data: 'Initial Data'),
+    //     create: (context) => loadDataFuture(),
+    //     child: StreamProvider(
+    //       initialData: ModelStream(number: 0),
+    //       create: (context) => loadedStream(),
+    //       child: const MaterialApp(
+    //         // home: ChangeNotifierProviderScreen(),
+    //         // home: FutureProviderScreen(),
+    //         home: StreamProviderScreen(),
+    //       ),
+    //     ),
+    //   ),
+    // );
+    // 6. --- Multiprovider
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CounterNotifier>(
+          create: (context) => CounterNotifier(),
+        ),
+        FutureProvider<Data>(
+          initialData: Data(data: 'Initial Data'),
+          create: (context) => loadDataFuture(),
+        ),
+        StreamProvider<ModelStream>(
           initialData: ModelStream(number: 0),
           create: (context) => loadedStream(),
-          child: const MaterialApp(
-            // home: ChangeNotifierProviderScreen(),
-            // home: FutureProviderScreen(),
-            home: StreamProviderScreen(),
-          ),
         ),
+      ],
+      child: const MaterialApp(
+        // home: ChangeNotifierProviderScreen(),
+        // home: FutureProviderScreen(),
+        // home: StreamProviderScreen(),
+        home: MultiProviderScreen(),
       ),
     );
   }
