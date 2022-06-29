@@ -1,9 +1,9 @@
 // https://www.youtube.com/watch?v=t_i5_QHalvk&list=PLgGlvOHs_ZdABf3vwR4GeJZbAyfQzTr9O&index=2
 
 import 'package:flutter/material.dart';
-import 'package:flutter_project/future_provider/data.dart';
-import 'package:flutter_project/future_provider/data_future.dart';
-import 'package:flutter_project/future_provider/future_provider_screen.dart';
+import 'package:flutter_project/stream_provider/data.dart';
+import 'package:flutter_project/stream_provider/data_stream.dart';
+import 'package:flutter_project/stream_provider/stream_provider_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -39,11 +39,19 @@ class MyApp extends StatelessWidget {
     //     home: ChangeNotifierProviderScreen(),
     //   ),
     // );
-    return FutureProvider<Data>(
-      initialData: Data(data: 'Initial Data'),
-      create: (_) => loadDataFuture(),
+    // 3.
+    // return FutureProvider<Data>(
+    //   initialData: Data(data: 'Initial Data'),
+    //   create: (_) => loadDataFuture(),
+    //   child: const MaterialApp(
+    //     home: FutureProviderScreen(),
+    //   ),
+    // );
+    return StreamProvider<ModelStream>(
+      initialData: ModelStream(number: 0),
+      create: (_) => loadedStream(),
       child: const MaterialApp(
-        home: FutureProviderScreen(),
+        home: StreamProviderScreen(),
       ),
     );
   }
