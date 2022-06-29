@@ -1,12 +1,9 @@
 // https://www.youtube.com/watch?v=t_i5_QHalvk&list=PLgGlvOHs_ZdABf3vwR4GeJZbAyfQzTr9O&index=2
 
 import 'package:flutter/material.dart';
-import 'package:flutter_project/change_notifier_provider/counter_notifier.dart';
-import 'package:flutter_project/future_provider/data.dart';
-import 'package:flutter_project/future_provider/data_future.dart';
-import 'package:flutter_project/multi_provider/multi_provider_screen.dart';
-import 'package:flutter_project/stream_provider/data.dart';
-import 'package:flutter_project/stream_provider/data_stream.dart';
+import 'package:flutter_project/proxy_provider/credit_card.dart';
+import 'package:flutter_project/proxy_provider/customer.dart';
+import 'package:flutter_project/proxy_provider/proxy_provider_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -76,25 +73,41 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
     // 6. --- Multiprovider
+    // return MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider<CounterNotifier>(
+    //       create: (context) => CounterNotifier(),
+    //     ),
+    //     FutureProvider<Data>(
+    //       initialData: Data(data: 'Initial Data'),
+    //       create: (context) => loadDataFuture(),
+    //     ),
+    //     StreamProvider<ModelStream>(
+    //       initialData: ModelStream(number: 0),
+    //       create: (context) => loadedStream(),
+    //     ),
+    //   ],
+    //   child: const MaterialApp(
+    //     // home: ChangeNotifierProviderScreen(),
+    //     // home: FutureProviderScreen(),
+    //     // home: StreamProviderScreen(),
+    //     home: MultiProviderScreen(),
+    //   ),
+    // );
+    // 7. --- Proxy Provider
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<CounterNotifier>(
-          create: (context) => CounterNotifier(),
+        ChangeNotifierProvider<CreditCard>(
+          create: (context) => CreditCard(),
         ),
-        FutureProvider<Data>(
-          initialData: Data(data: 'Initial Data'),
-          create: (context) => loadDataFuture(),
-        ),
-        StreamProvider<ModelStream>(
-          initialData: ModelStream(number: 0),
-          create: (context) => loadedStream(),
+        ProxyProvider<CreditCard, Customer>(
+          update: (context, value, previous) => Customer(
+            creditCard: value,
+          ),
         ),
       ],
       child: const MaterialApp(
-        // home: ChangeNotifierProviderScreen(),
-        // home: FutureProviderScreen(),
-        // home: StreamProviderScreen(),
-        home: MultiProviderScreen(),
+        home: ProxyProviderScreen(),
       ),
     );
   }
