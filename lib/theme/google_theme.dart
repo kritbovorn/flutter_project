@@ -3,60 +3,74 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GoogleTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headline1: GoogleFonts.staatliches(
+    headline1: GoogleFonts.prompt(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.staatliches(
+    headline2: GoogleFonts.prompt(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3:
-        GoogleFonts.staatliches(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.staatliches(
+    headline3: GoogleFonts.prompt(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.prompt(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5:
-        GoogleFonts.staatliches(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.staatliches(
+    headline5: GoogleFonts.prompt(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.prompt(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.staatliches(
-        fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.staatliches(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.staatliches(
+    subtitle1: GoogleFonts.prompt(
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        letterSpacing: 0.15,
+        color: const Color(0xFFF6EBED)),
+    subtitle2: GoogleFonts.prompt(
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        letterSpacing: 0.15,
+        color: const Color(0xFFF1C3C7)),
+    bodyText1: GoogleFonts.prompt(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.staatliches(
+    bodyText2: GoogleFonts.prompt(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.staatliches(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.staatliches(
+    button: GoogleFonts.prompt(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.5,
+        color: Colors.white),
+    caption: GoogleFonts.prompt(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.staatliches(
+    overline: GoogleFonts.prompt(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    headline1: GoogleFonts.staatliches(
+    headline1: GoogleFonts.prompt(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.staatliches(
+    headline2: GoogleFonts.prompt(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3:
-        GoogleFonts.staatliches(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.staatliches(
+    headline3: GoogleFonts.prompt(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.prompt(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5:
-        GoogleFonts.staatliches(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.staatliches(
+    headline5: GoogleFonts.prompt(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.prompt(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.staatliches(
-        fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.staatliches(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.staatliches(
+    subtitle1: GoogleFonts.prompt(
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        letterSpacing: 0.15,
+        color: const Color(0xFFF6EBED)),
+    subtitle2: GoogleFonts.prompt(
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        letterSpacing: 0.15,
+        color: const Color(0xFFF1C3C7)),
+    bodyText1: GoogleFonts.prompt(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.staatliches(
+    bodyText2: GoogleFonts.prompt(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.staatliches(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.staatliches(
+    button: GoogleFonts.prompt(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.5,
+        color: Colors.white),
+    caption: GoogleFonts.prompt(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.staatliches(
+    overline: GoogleFonts.prompt(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   ).apply(
     bodyColor: GoogleTheme.lightColorScheme.onError,
@@ -89,7 +103,7 @@ class GoogleTheme {
     secondaryContainer: Color(0xFFE8DEF8),
     secondary: Color(0xFF625B71),
     inversePrimary: Color(0xFFD0BCFF),
-    onPrimaryContainer: Color(0xFF21005D),
+    onPrimaryContainer: Color(0xFF960c1f),
     onPrimary: Color(0xFFFFFFFF),
     primaryContainer: Color(0xFFEADDFF),
     primary: Color(0xFF6750A4),
@@ -121,7 +135,7 @@ class GoogleTheme {
     secondaryContainer: Color(0xFF4A4458),
     secondary: Color(0xFFCCC2DC),
     inversePrimary: Color(0xFF6750A4),
-    onPrimaryContainer: Color(0xFFEADDFF),
+    onPrimaryContainer: Color(0xFF960c1f),
     onPrimary: Color(0xFF381E72),
     primaryContainer: Color(0xFF4F378B),
     primary: Color(0xFFD0BCFF),
@@ -131,6 +145,12 @@ class GoogleTheme {
     scaffoldBackgroundColor: GoogleTheme.lightColorScheme.background,
     textTheme: lightTextTheme,
     colorScheme: lightColorScheme,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: lightColorScheme.onPrimaryContainer,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -138,5 +158,11 @@ class GoogleTheme {
     scaffoldBackgroundColor: const Color(0xFF333333),
     textTheme: darkTextTheme,
     colorScheme: darkColorScheme,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: darkColorScheme.onPrimaryContainer,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+      ),
+    ),
   );
 }
