@@ -16,9 +16,9 @@ class BottomContentWidget extends StatelessWidget {
           kBottomNavigationBarHeight + MediaQuery.of(context).padding.bottom,
       color: Theme.of(context).colorScheme.onPrimaryContainer,
       child: SecondTitleInRow(
-        firstTitle: "เข้าสู่ระบบครั้งแรก",
+        firstTitle: "วันเสาร์",
         firstPressed: () {},
-        secondTitle: "ลงทะเบียนตัวแทนเติมเงิน",
+        secondTitle: "วันอาทิตย์",
         secondPressed: () {},
       ),
     );

@@ -9,9 +9,9 @@ class CodeContentWidget extends StatelessWidget {
     return SizedBox(
       height: kBottomNavigationBarHeight,
       child: CodeSecondTitleInRow(
-        firstTitle: "ลืมรหัสผ่าน",
+        firstTitle: "วันหยุด",
         firstPressed: () {},
-        secondTitle: "เปลี่ยนรหัสผ่าน",
+        secondTitle: "วันหยุด",
         secondPressed: () {},
       ),
     );

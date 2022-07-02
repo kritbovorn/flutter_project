@@ -14,7 +14,7 @@ class LoginTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        fillColor: Colors.white,
+        fillColor: Colors.white70,
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       theme: GoogleTheme.lightTheme,
       title: 'Flutter Demo',
       home: const HomeScreen(),

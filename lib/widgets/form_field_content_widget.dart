@@ -11,25 +11,25 @@ class FormFieldContentWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        LoginTextField(
-          hintText: "รหัสตัวแทนคู่ค้า",
+        const LoginTextField(
+          hintText: "ไปเที่ยวทะเล",
           icon: FaIcon(
             FontAwesomeIcons.userLarge,
             size: 16,
-            color: Colors.grey.shade400,
+            color: Colors.grey,
           ),
         ),
-        LoginTextField(
-          hintText: "รหัสผ่าน",
+        const LoginTextField(
+          hintText: "ไปเที่ยวภูเขา",
           icon: FaIcon(
             FontAwesomeIcons.key,
             size: 16,
-            color: Colors.grey.shade400,
+            color: Colors.grey,
           ),
         ),
         ElevatedButton(
           onPressed: () {},
-          child: Text("เข้าสู่ระบบ", style: Theme.of(context).textTheme.button),
+          child: Text("อยากไปทะเล", style: Theme.of(context).textTheme.button),
         ),
       ],
     );
