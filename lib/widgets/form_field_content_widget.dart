@@ -20,6 +20,7 @@ class FormFieldContentWidget extends StatelessWidget {
           ),
         ),
         const LoginTextField(
+          isSecure: true,
           hintText: "ไปเที่ยวภูเขา",
           icon: FaIcon(
             FontAwesomeIcons.key,
