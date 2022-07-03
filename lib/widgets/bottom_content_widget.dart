@@ -7,7 +7,7 @@ class BottomContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
+      padding:  EdgeInsets.only(
         bottom: MediaQuery.of(context).padding.bottom,
         left: 28,
         right: 28,

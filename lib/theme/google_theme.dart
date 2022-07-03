@@ -148,7 +148,7 @@ class GoogleTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: lightColorScheme.onPrimaryContainer,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 14),
       ),
     ),
   );
@@ -161,7 +161,7 @@ class GoogleTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         primary: darkColorScheme.onPrimaryContainer,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 14),
       ),
     ),
   );

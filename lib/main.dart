@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/test.dart';
+import 'package:flutter_project/test1.dart';
 import 'package:flutter_project/theme/google_theme.dart';
 
 void main() {
@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
 
       theme: GoogleTheme.lightTheme,
       title: 'Flutter Demo',
-      home: const Test(),
+      home: const Test1(),
+      // home: const Test(),
       // home: const HomeScreen(),
       // home: SampleUi(),
     );
