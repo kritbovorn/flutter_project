@@ -3,64 +3,67 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GoogleTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headline1: GoogleFonts.staatliches(
+    headline1: GoogleFonts.roboto(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.staatliches(
+    headline2: GoogleFonts.roboto(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
     headline3:
-        GoogleFonts.staatliches(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.staatliches(
+        GoogleFonts.roboto(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.roboto(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
     headline5:
-        GoogleFonts.staatliches(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.staatliches(
+        GoogleFonts.roboto(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.roboto(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.staatliches(
+    subtitle1: GoogleFonts.roboto(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.staatliches(
+    subtitle2: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.staatliches(
+    bodyText1: GoogleFonts.roboto(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.staatliches(
+    bodyText2: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.staatliches(
+    button: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.staatliches(
+    caption: GoogleFonts.roboto(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.staatliches(
+    overline: GoogleFonts.roboto(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
+  ).apply(
+    bodyColor: const Color(0xFF4D5875),
+    displayColor: const Color(0xFF4D5875),
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    headline1: GoogleFonts.staatliches(
+    headline1: GoogleFonts.roboto(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.staatliches(
+    headline2: GoogleFonts.roboto(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
     headline3:
-        GoogleFonts.staatliches(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.staatliches(
+        GoogleFonts.roboto(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.roboto(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
     headline5:
-        GoogleFonts.staatliches(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.staatliches(
+        GoogleFonts.roboto(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.roboto(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.staatliches(
+    subtitle1: GoogleFonts.roboto(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.staatliches(
+    subtitle2: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.staatliches(
+    bodyText1: GoogleFonts.roboto(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.staatliches(
+    bodyText2: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.staatliches(
+    button: GoogleFonts.roboto(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.staatliches(
+    caption: GoogleFonts.roboto(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.staatliches(
+    overline: GoogleFonts.roboto(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   ).apply(
-    bodyColor: GoogleTheme.lightColorScheme.onError,
-    displayColor: GoogleTheme.lightColorScheme.onError,
+    bodyColor: const Color(0xFF4D5875),
+    displayColor: const Color(0xFF4D5875),
   );
 
   static ColorScheme lightColorScheme = const ColorScheme(
@@ -83,16 +86,16 @@ class GoogleTheme {
     onSurfaceVariant: Color(0xFF49454F),
     onSurface: Color(0xFF1C1B1F),
     surfaceVariant: Color(0xFFE7E0EC),
-    surface: Color(0xFFFFFBFE),
+    surface: Color(0xFFEE376E),
     onSecondaryContainer: Color(0xFF1D192B),
-    onSecondary: Color(0xFFFFFFFF),
-    secondaryContainer: Color(0xFFE8DEF8),
-    secondary: Color(0xFF625B71),
+    onSecondary: Color(0xFF8793b2),
+    secondaryContainer: Color(0xFFEBEDFA),
+    secondary: Color(0xFFF5F6FC),
     inversePrimary: Color(0xFFD0BCFF),
     onPrimaryContainer: Color(0xFF21005D),
-    onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFEADDFF),
-    primary: Color(0xFF6750A4),
+    onPrimary: Color(0xFF30384D),
+    primaryContainer: Color(0xFFF2F4FC),
+    primary: Color(0xFF366CF6),
   );
 
   static ColorScheme darkColorScheme = const ColorScheme(
