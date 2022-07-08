@@ -8,9 +8,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<int> getData() async {
-    await Future.delayed(const Duration(seconds: 4));
-    return 7;
+  Future<int?> getData() async {
+    try {
+      await Future.delayed(const Duration(seconds: 4));
+    } catch (e) {
+      throw '$e';
+    }
+    return 0;
   }
 
   @override
@@ -20,10 +24,16 @@ class _HomeScreenState extends State<HomeScreen> {
         child: FutureBuilder<int?>(
           future: getData(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.hasError) {
+              final error = snapshot.error;
+              return Text(
+                '😵‍💫 $error',
+                style: Theme.of(context).textTheme.headline5,
+              );
+            } else if (snapshot.hasData) {
               int data = snapshot.data!;
               return Text(
-                '⏳ $data',
+                '🏈 $data',
                 style: Theme.of(context).textTheme.headline5,
               );
             } else {
