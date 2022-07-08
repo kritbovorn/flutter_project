@@ -12,14 +12,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // 1. ประกาศตัวแปร Future มารับค่า
   late Future<int?> dataFuture;
 
   @override
   void initState() {
     super.initState();
+    // 3. กำหนดให้มีค่าเท่ากับ ข้อมูลใน Future function
     dataFuture = getData();
   }
 
+  // 2. สร้าง Function FutureBuilder()
   Future<int?> getData() async {
     try {
       http.Response response = await http.get(
@@ -37,23 +40,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+        // 4. เรียกใช้
         child: FutureBuilder<int?>(
-          future: dataFuture,
+          future: dataFuture, // 5. เอาตัวแปร ที่ initState() มาใช้
+          initialData: 0, //  6. กำหนดค่าเริ่มต้น
           builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              final error = snapshot.error;
-              return Text(
-                '😵‍💫 $error',
-                style: Theme.of(context).textTheme.headline5,
-              );
-            } else if (snapshot.hasData) {
-              int data = snapshot.data!;
-              return Text(
-                '🏈 $data',
-                style: Theme.of(context).textTheme.headline5,
-              );
-            } else {
-              return const CircularProgressIndicator();
+
+            //  $$$$$ : Switch STATEMENT
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                 return Text(
+                    '⏳ ${snapshot.data}',
+                    style: Theme.of(context).textTheme.headline5,
+                  );
+              case ConnectionState.done:
+              default:
+                if (snapshot.hasError) {
+                  final error = snapshot.error;
+                  return Text(
+                    '😵‍💫 $error',
+                    style: Theme.of(context).textTheme.headline5,
+                  );
+                } else if (snapshot.hasData) {
+                  int data = snapshot.data!;
+                  return Text(
+                    '🏈 $data',
+                    style: Theme.of(context).textTheme.headline5,
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
             }
           },
         ),
