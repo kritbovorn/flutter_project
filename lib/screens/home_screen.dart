@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/bottom_bar/custom_bottom_bar_widget.dart';
 import 'package:flutter_project/cell_button.dart';
 import 'package:flutter_project/custom_dialog.dart';
 
@@ -129,7 +130,6 @@ class _HomeScreenState extends State<HomeScreen> {
             callback: resetGame,
           ),
         );
-        
       } else {
         showDialog(
           context: context,
@@ -160,33 +160,52 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: const Color.fromARGB(255, 115, 87, 3),
         title: const Text('Tic Tac Toe'),
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(8),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-        ),
-        itemCount: buttonLists.length,
-        itemBuilder: (BuildContext context, int index) => SizedBox(
-          child: ElevatedButton(
-            onPressed: buttonLists[index].enable!
-                ? () => playGame(buttonLists[index])
-                : null,
-            style: ElevatedButton.styleFrom(
-                // primary: buttonLists[index].backgroundColor),
-                // onPrimary: buttonLists[index].backgroundColor),
-                onSurface: buttonLists[index].backgroundColor),
-            // surfaceTintColor: buttonLists[index].backgroundColor),
-            child: Text(
-              buttonLists[index].title!,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Colors.white),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(8),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+              ),
+              itemCount: buttonLists.length,
+              itemBuilder: (BuildContext context, int index) => SizedBox(
+                child: ElevatedButton(
+                  onPressed: buttonLists[index].enable!
+                      ? () => playGame(buttonLists[index])
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                      // primary: buttonLists[index].backgroundColor),
+                      // onPrimary: buttonLists[index].backgroundColor),
+                      onSurface: buttonLists[index].backgroundColor),
+                  // surfaceTintColor: buttonLists[index].backgroundColor),
+                  child: Text(
+                    buttonLists[index].title!,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4!
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
+          CustomBottomBarWidget(
+            color: const Color.fromARGB(255, 115, 87, 3),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 115, 87, 3),
+                elevation: 0,
+              ),
+              child: const Text('REFRESH'),
+            ),
+          )
+        ],
       ),
     );
   }
