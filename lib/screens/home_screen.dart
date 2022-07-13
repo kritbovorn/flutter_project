@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_project/bottom_bar/custom_bottom_bar_widget.dart';
 import 'package:flutter_project/cell_button.dart';
@@ -57,11 +59,44 @@ class _HomeScreenState extends State<HomeScreen> {
         player2.add(cell.id);
       }
       cell.enable = false;
-      checkWinner();
+      int winner = checkWinner();
+
+      if (winner == -1) {
+        if (buttonLists.every((element) => element.title != "")) {
+          showDialog(
+            context: context,
+            builder: (_) => CustomDialog(
+              title: "เสมอกัน นะค่ะ",
+              content: "เล่นใหม่ อีกสักรอบ นะค่ะ",
+              actionTitle: 'เล่นใหม่',
+              callback: resetGame,
+            ),
+          );
+        } else {
+          activePlayer == 2 ? autoPlay() : null;
+        }
+      }
     });
   }
 
-  void checkWinner() {
+  void autoPlay() {
+    var emptyCells = [];
+    var lists = List.generate(9, (index) => index + 1);
+
+    for (var cellID in lists) {
+      if (!(player1.contains(cellID) || player2.contains(cellID))) {
+        emptyCells.add(cellID);
+      }
+    }
+
+    var random = Random();
+    var randomIndex = random.nextInt(emptyCells.length - 1);
+    var cellID = emptyCells[randomIndex];
+    int index = buttonLists.indexWhere((element) => element.id == cellID);
+    playGame(buttonLists[index]);
+  }
+
+  int checkWinner() {
     var winner = -1;
     // Row 1
     if (player1.contains(1) && player1.contains(2) && player1.contains(3)) {
@@ -125,8 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
         showDialog(
           context: context,
           builder: (_) => CustomDialog(
-            title: 'Player 1: is Winner',
-            content: 'bird',
+            title: 'You : is Winner',
+            content: 'คุณคือ ผู้ทำแต้มนำ นะค่ะ',
             callback: resetGame,
           ),
         );
@@ -134,28 +169,33 @@ class _HomeScreenState extends State<HomeScreen> {
         showDialog(
           context: context,
           builder: (_) => CustomDialog(
-            title: 'Player 2: is Winner',
-            content: 'bird',
+            backgroundColor: Colors.red,
+            title: 'Oops!!! : RoBot: is Winner',
+            content: 'เล่นใหม่ นะค่ะ',
+            actionTitle: "ขอแก้มือ อีกสักรอบ",
             callback: resetGame,
           ),
         );
       }
     }
+    return winner;
   }
 
   void resetGame() {
     if (Navigator.canPop(context)) {
       Navigator.pop(context);
       setState(() => buttonLists = doInit());
+      return;
     }
+    setState(() {
+      buttonLists = doInit();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 53, 47, 39),
-      // backgroundColor: const Color.fromARGB(255, 70, 41, 2),
-      // backgroundColor: const Color.fromARGB(255, 53, 52, 50),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 115, 87, 3),
         title: const Text('Tic Tac Toe'),
@@ -179,10 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? () => playGame(buttonLists[index])
                       : null,
                   style: ElevatedButton.styleFrom(
-                      // primary: buttonLists[index].backgroundColor),
-                      // onPrimary: buttonLists[index].backgroundColor),
                       onSurface: buttonLists[index].backgroundColor),
-                  // surfaceTintColor: buttonLists[index].backgroundColor),
                   child: Text(
                     buttonLists[index].title!,
                     style: Theme.of(context)
@@ -197,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomBottomBarWidget(
             color: const Color.fromARGB(255, 115, 87, 3),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: resetGame,
               style: ElevatedButton.styleFrom(
                 primary: const Color.fromARGB(255, 115, 87, 3),
                 elevation: 0,
