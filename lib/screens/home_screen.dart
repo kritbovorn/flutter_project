@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/bottom_bar/custom_bottom_bar_widget.dart';
 import 'package:flutter_project/cell_button.dart';
-import 'package:flutter_project/custom_dialog.dart';
+import 'package:flutter_project/dis_play_cupertino_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -63,15 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
       if (winner == -1) {
         if (buttonLists.every((element) => element.title != "")) {
-          showDialog(
-            context: context,
-            builder: (_) => CustomDialog(
-              title: "เสมอกัน นะค่ะ",
-              content: "เล่นใหม่ อีกสักรอบ นะค่ะ",
-              actionTitle: 'เล่นใหม่',
-              callback: resetGame,
-            ),
-          );
+          Future.delayed(const Duration(seconds: 1), () {
+            showCupertinoDialog(
+              context: context,
+              builder: (context) => DisPlayCupertinoDialog(
+                title: "เสมอกัน นะค่ะ",
+                content: "เล่นใหม่ อีกสักรอบ นะค่ะ",
+                onPressed: resetGame,
+              ),
+            );
+          });
         } else {
           activePlayer == 2 ? autoPlay() : null;
         }
@@ -157,25 +159,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (winner != -1) {
       if (winner == 1) {
-        showDialog(
-          context: context,
-          builder: (_) => CustomDialog(
-            title: 'You : is Winner',
-            content: 'คุณคือ ผู้ทำแต้มนำ นะค่ะ',
-            callback: resetGame,
-          ),
-        );
+        Future.delayed(const Duration(seconds: 1), () {
+          showCupertinoDialog(
+            context: context,
+            builder: (context) => DisPlayCupertinoDialog(
+              title: 'You : is Winner',
+              content: 'คุณคือ ผู้ทำแต้มนำ นะค่ะ',
+              onPressed: resetGame,
+            ),
+          );
+        });
       } else {
-        showDialog(
-          context: context,
-          builder: (_) => CustomDialog(
-            backgroundColor: Colors.red,
-            title: 'Oops!!! : RoBot: is Winner',
-            content: 'เล่นใหม่ นะค่ะ',
-            actionTitle: "ขอแก้มือ อีกสักรอบ",
-            callback: resetGame,
-          ),
-        );
+        Future.delayed(const Duration(seconds: 1), () {
+          showCupertinoDialog(
+            context: context,
+            builder: (context) => DisPlayCupertinoDialog(
+              title: '!!!Oops  Robot: is Winner',
+              content: 'เล่นใหม่ นะค่ะ',
+              onPressed: resetGame,
+            ),
+          );
+        });
       }
     }
     return winner;

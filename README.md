@@ -9,4 +9,6 @@
 
 [Codepur: Watch this video tutorial on Youtube](https://www.youtube.com/watch?v=u1KD6Kz0PIQ) 👁️ 📺 📺 📺 👁️
 
-## 
+## Preview  
+
+https://user-images.githubusercontent.com/10919051/178718327-8cd085fc-21b9-4b9e-9637-cc6d1b284e54.mov
