@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/cell_button.dart';
+import 'package:flutter_project/custom_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         player2.add(cell.id);
       }
       cell.enable = false;
+      checkWinner();
     });
   }
 
@@ -119,12 +121,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (winner != -1) {
       if (winner == 1) {
-
-      } else {
+        showDialog(
+          context: context,
+          builder: (_) => CustomDialog(
+            title: 'Player 1: is Winner',
+            content: 'bird',
+            callback: resetGame,
+          ),
+        );
         
+      } else {
+        showDialog(
+          context: context,
+          builder: (_) => CustomDialog(
+            title: 'Player 2: is Winner',
+            content: 'bird',
+            callback: resetGame,
+          ),
+        );
       }
     }
-    
+  }
+
+  void resetGame() {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+      setState(() => buttonLists = doInit());
+    }
   }
 
   @override
