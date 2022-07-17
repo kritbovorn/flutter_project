@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/move.dart';
 
-
 class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
 
@@ -16,18 +15,6 @@ class _GameState extends State<Game> {
   int moves = 0;
   int result = 0;
 
-  gameMove() {
-    if (!gameOver) {
-      Move best = Move.minimiser(game, 0);
-      debugPrint("Game sets -> ${best.index}");
-      setState(() {
-        game[best.index] = 'X';
-        moves++;
-      });
-      checkVictory();
-    }
-  }
-
   void onClick(int index) {
     if (game[index] == '') {
       setState(() {
@@ -35,17 +22,10 @@ class _GameState extends State<Game> {
         moves++;
       });
       checkVictory();
-      gameMove();
+      Future.delayed(const Duration(seconds: 2), () {
+        gameMove();
+      });
     }
-  }
-
-  void reset() {
-    setState(() {
-      game.fillRange(0, 9, '');
-      gameOver = false;
-      moves = 0;
-      result = 0;
-    });
   }
 
   void checkVictory() {
@@ -60,42 +40,25 @@ class _GameState extends State<Game> {
     }
   }
 
-  Widget getTile(int index, String text) {
-    return Container(
-        decoration: BoxDecoration(border: getBorders(index: index)),
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
-          ),
-        ));
+  gameMove() {
+    if (!gameOver) {
+      Move best = Move.minimiser(game, 0);
+      debugPrint("Game sets -> ${best.index}");
+      setState(() {
+        game[best.index] = 'X';
+        moves++;
+      });
+      checkVictory();
+    }
   }
 
-  Border getBorders({
-    required int index,
-    BorderSide borderSide = const BorderSide(width: 5, color: Colors.grey),
-  }) {
-    switch (index) {
-      case 0:
-        return Border(bottom: borderSide, right: borderSide);
-      case 1:
-        return Border(bottom: borderSide, left: borderSide, right: borderSide);
-      case 2:
-        return Border(bottom: borderSide, left: borderSide);
-      case 3:
-        return Border(top: borderSide, bottom: borderSide, right: borderSide);
-      case 4:
-        return Border.all(width: 5, color: Colors.grey);
-      case 5:
-        return Border(top: borderSide, bottom: borderSide, left: borderSide);
-      case 6:
-        return Border(top: borderSide, right: borderSide);
-      case 7:
-        return Border(top: borderSide, left: borderSide, right: borderSide);
-      case 8:
-        return Border(top: borderSide, left: borderSide);
-    }
-    return Border.all(width: 5, color: Colors.grey);
+  void reset() {
+    setState(() {
+      game.fillRange(0, 9, '');
+      gameOver = false;
+      moves = 0;
+      result = 0;
+    });
   }
 
   @override
@@ -148,5 +111,42 @@ class _GameState extends State<Game> {
         ],
       ),
     );
+  }
+
+  Widget getTile(int index, String text) {
+    return Container(
+        decoration: BoxDecoration(border: getBorders(index)),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 64, fontWeight: FontWeight.w400),
+          ),
+        ));
+  }
+
+  Border getBorders(int index) {
+    BorderSide borderSide = const BorderSide(width: 3, color: Colors.grey);
+    Border borderAll = Border.all(width: 3, color: Colors.grey);
+    switch (index) {
+      case 0:
+        return Border(bottom: borderSide, right: borderSide);
+      case 1:
+        return Border(bottom: borderSide, left: borderSide, right: borderSide);
+      case 2:
+        return Border(bottom: borderSide, left: borderSide);
+      case 3:
+        return Border(top: borderSide, bottom: borderSide, right: borderSide);
+      case 4:
+        return borderAll;
+      case 5:
+        return Border(top: borderSide, bottom: borderSide, left: borderSide);
+      case 6:
+        return Border(top: borderSide, right: borderSide);
+      case 7:
+        return Border(top: borderSide, left: borderSide, right: borderSide);
+      case 8:
+        return Border(top: borderSide, left: borderSide);
+    }
+    return borderAll;
   }
 }
