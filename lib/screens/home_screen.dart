@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _reset() {
+  _reset() {
     setState(() {
       // games = List.filled(9, "");
       games.fillRange(0, 9, "");
@@ -129,7 +129,25 @@ class _HomeScreenState extends State<HomeScreen> {
     return check;
   }
 
-  void _showWinnerDialog() {}
+  Future<dynamic> _showWinnerDialog() async {
+    return Future.delayed(const Duration(seconds: 1), () {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Winner is'),
+              actions: [
+                ElevatedButton.icon(
+                  onPressed: () => Navigator.pop(context, _reset()),
+                  icon: const Icon(Icons.repeat),
+                  label: const Text("Play again"),
+                ),
+              ],
+            );
+          });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
