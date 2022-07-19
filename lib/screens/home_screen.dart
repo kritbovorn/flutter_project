@@ -40,12 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
     matchIndexs = Move.checkWinner(games).matchs;
 
     if (matchIndexs.isNotEmpty) {
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 20), () {
         setState(() {
           isPressed = false;
         });
       });
-      // gameOver = true;
     }
 
     if (res != -1) {
@@ -123,6 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           onPrimary: Theme.of(context).colorScheme.surfaceTint,
           primary: matchIndexs.contains(index) ? Colors.red : Colors.grey[800],
+          onSurface: matchIndexs.contains(index)
+              ? Colors.orange.withAlpha(250)
+              : Colors.grey[800],
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0),
           ),
