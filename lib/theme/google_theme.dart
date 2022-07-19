@@ -3,60 +3,62 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GoogleTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headline1: GoogleFonts.roboto(
+    headline1: GoogleFonts.poppins(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.roboto(
+    headline2: GoogleFonts.poppins(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3:
-        GoogleFonts.roboto(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.roboto(
+    headline3: GoogleFonts.poppins(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.poppins(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5:
-        GoogleFonts.roboto(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.roboto(
+    headline5: GoogleFonts.poppins(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.poppins(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.roboto(
+    subtitle1: GoogleFonts.poppins(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.roboto(
+    subtitle2: GoogleFonts.poppins(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.roboto(
+    bodyText1: GoogleFonts.poppins(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.roboto(
+    bodyText2: GoogleFonts.poppins(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.roboto(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.roboto(
+    button: GoogleFonts.poppins(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25,
+        color: const Color(0xFFF6F6F6)),
+    caption: GoogleFonts.poppins(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.roboto(
+    overline: GoogleFonts.poppins(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   );
 
   static TextTheme darkTextTheme = TextTheme(
-    headline1: GoogleFonts.roboto(
+    headline1: GoogleFonts.poppins(
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.roboto(
+    headline2: GoogleFonts.poppins(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3:
-        GoogleFonts.roboto(fontSize: 42, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.roboto(
+    headline3: GoogleFonts.poppins(fontSize: 42, fontWeight: FontWeight.w400),
+    headline4: GoogleFonts.poppins(
         fontSize: 30, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5:
-        GoogleFonts.roboto(fontSize: 21, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.roboto(
+    headline5: GoogleFonts.poppins(fontSize: 21, fontWeight: FontWeight.w400),
+    headline6: GoogleFonts.poppins(
         fontSize: 17, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.roboto(
+    subtitle1: GoogleFonts.poppins(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.roboto(
+    subtitle2: GoogleFonts.poppins(
         fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.roboto(
+    bodyText1: GoogleFonts.poppins(
         fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.roboto(
+    bodyText2: GoogleFonts.poppins(
         fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.roboto(
-        fontSize: 12, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.roboto(
+    button: GoogleFonts.poppins(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25,
+        color: const Color(0xFFF6F6F6)),
+    caption: GoogleFonts.poppins(
         fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.roboto(
+    overline: GoogleFonts.poppins(
         fontSize: 9, fontWeight: FontWeight.w400, letterSpacing: 1.5),
   );
 
@@ -83,13 +85,13 @@ class GoogleTheme {
     surface: Color(0xFFFFFBFE),
     onSecondaryContainer: Color(0xFF1D192B),
     onSecondary: Color(0xFFFFFFFF),
-    secondaryContainer: Color(0xFFE8DEF8),
-    secondary: Color(0xFF625B71),
+    secondaryContainer: Color(0xFFFEFEFE),
+    secondary: Color(0xFFF6F6F6),
     inversePrimary: Color(0xFFD0BCFF),
-    onPrimaryContainer: Color(0xFF21005D),
+    onPrimaryContainer: Color(0xFF6B6B6B),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFEADDFF),
-    primary: Color(0xFF6750A4),
+    primaryContainer: Color(0xFF323234),
+    primary: Color(0xFF6B6B6B),
   );
 
   static ColorScheme darkColorScheme = const ColorScheme(
