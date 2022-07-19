@@ -113,7 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     isActive: models[index].isActive,
                     isShowIconButton: models[index].isShowIconButton,
                     isShowLetter: models[index].isShowLetter,
-                    onPressed: () {},
+                    onPressed: () {
+                      debugPrint(index.toString());
+                    },
                   );
                 },
               ),

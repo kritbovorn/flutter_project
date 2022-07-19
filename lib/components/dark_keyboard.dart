@@ -40,7 +40,7 @@ class DarkKeyboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return isShowIconButton
         ? ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               primary: const Color(0xFF323234),
               elevation: 0,
