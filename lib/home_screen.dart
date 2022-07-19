@@ -10,16 +10,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // List<Dar> cells = List.filled(10, DarkKeyboard);
-  List<int> numbers = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
+  List<String> numbers = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
   ];
   List<String> letters = [
     "",
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "MNO",
     "PQRS",
     "TUV",
-    "WXYZ"
+    "WXYZ",
   ];
   @override
   Widget build(BuildContext context) {
@@ -43,18 +43,26 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SizedBox.shrink(),
             ),
             Container(
-              height: 300,
+              padding: const EdgeInsets.all(8),
               color: const Color(0xFF323234),
-              child: Wrap(
-                children: List.generate(
-                    9,
-                    (index) => DarkKeyboard(
-                          letter: letters[index],
-                          number: numbers[index],
-                          onPressed: () {},
-                        )),
+              child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 8,
+                  mainAxisExtent: 65,
+                ),
+                itemCount: 9,
+                itemBuilder: (BuildContext context, int index) {
+                  return DarkKeyboard(
+                    number: numbers[index],
+                    letter: letters[index],
+                    onPressed: () {},
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),
