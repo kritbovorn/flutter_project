@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     KeyboardModel(
         number: "1",
         letter: "",
-        isShowLetter: false,
+        isShowLetter: true,
         isShowIconButton: false,
         isActive: true),
     KeyboardModel(
