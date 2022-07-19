@@ -12,31 +12,60 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<String> games = List.filled(9, "");
 
-  bool isSwitchPlayer = true;
-  bool isGameOver = false;
+  bool gameOver = false;
+  int moves = 0;
+  int result = 0;
 
   List<int> matchIndexs = [];
 
   void playGame(int index) {
-    setState(() {
-      isSwitchPlayer ? games[index] = "O" : games[index] = "X";
-      isSwitchPlayer = !isSwitchPlayer;
+    if (games[index] == "") {
+      setState(() {
+        games[index] = "O";
+        moves++;
+      });
+      checkVictory();
+      Future.delayed(const Duration(seconds: 2), () {
+        aiPlay();
+      });
+    }
+  }
 
-      matchIndexs = Move.checkWinner(games).matchs;
-      debugPrint(matchIndexs.toString());
-    });
+  void checkVictory() {
+    debugPrint(games.toString());
+    debugPrint(Move.isEndState(games).toString());
+    int res = Move.checkWinner(games).player;
+    matchIndexs = Move.checkWinner(games).matchs;
+    if (res != -1) {
+      setState(() {
+        result = res;
+        gameOver = true;
+      });
+    }
+  }
+
+  aiPlay() {
+    if (!gameOver) {
+      Move best = Move.minimizer(games, 0);
+      debugPrint("Game sets -> ${best.index}");
+      setState(() {
+        games[best.index] = 'X';
+        moves++;
+      });
+      checkVictory();
+    }
   }
 
   reset() {
     setState(() {
       // games = List.filled(9, "");
       games.fillRange(0, 9, "");
-      isGameOver = false;
+      gameOver = false;
       matchIndexs = [];
+      moves = 0;
+      result = 0;
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {

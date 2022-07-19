@@ -66,88 +66,113 @@ class Move {
     return max;
   }
 
-  static Check checkWinner(List<String> games) {
-    Check check = Check(player: 0, matchs: []);
-    if (games[0] == games[1] && games[0] == games[2] && games[0] != "") {
-      check.matchs = [0, 1, 2];
-      if (games[0] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[0] == 'X') {
-        check.player = 2;
-        return check;
+  static Check checkWinner(List<String> game) {
+    Check checks = Check(player: 0, matchs: []);
+    for (int i = 0; i < 9; i += 3) {
+      if ((game[i] == game[i + 1]) &&
+          (game[i + 1] == game[i + 2]) &&
+          (game[i] != '')) {
+        checks.matchs = [i, i + 1, i + 2];
+        if (game[i] == 'O') {
+          checks.player = 1;
+          return checks;
+        } else if (game[i] == 'X') {
+          checks.player = 2;
+          return checks;
+        }
       }
     }
-    if (games[3] == games[4] && games[3] == games[5] && games[3] != "") {
-      check.matchs = [3, 4, 5];
-      if (games[3] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[3] == 'X') {
-        check.player = 2;
-        return check;
+
+    for (int i = 0; i < 3; i++) {
+      if ((game[i] == game[i + 3]) &&
+          (game[i + 3] == game[i + 6]) &&
+          (game[i] != '')) {
+        checks.matchs = [i, i + 3, i + 6];
+        if (game[i] == 'O') {
+          checks.player = 1;
+          return checks;
+        } else if (game[i] == 'X') {
+          checks.player = 2;
+          return checks;
+        }
       }
     }
-    if (games[6] == games[7] && games[6] == games[8] && games[6] != "") {
-      check.matchs = [6, 7, 8];
-      if (games[6] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[6] == 'X') {
-        check.player = 2;
-        return check;
+
+    if ((game[0] == game[4]) && (game[4] == game[8]) && (game[0] != '')) {
+      checks.matchs = [0, 4, 8];
+      if (game[0] == 'O') {
+        checks.player = 1;
+        return checks;
+      } else if (game[0] == 'X') {
+        checks.player = 2;
+        return checks;
+      }
+    } else if (game[2] == game[4] && game[4] == game[6] && game[2] != '') {
+      checks.matchs = [2, 4, 6];
+      if (game[2] == 'O') {
+        checks.player = 1;
+        return checks;
+      } else if (game[2] == 'X') {
+        checks.player = 2;
+        return checks;
       }
     }
-    if (games[0] == games[3] && games[0] == games[6] && games[0] != "") {
-      check.matchs = [0, 3, 6];
-      if (games[0] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[0] == 'X') {
-        check.player = 2;
-        return check;
+
+    for (int i = 0; i < 9; i++) {
+      if (game[i] == '') {
+        checks.player = -1;
+        return checks;
       }
     }
-    if (games[1] == games[4] && games[1] == games[7] && games[1] != "") {
-      check.matchs = [1, 4, 7];
-      if (games[1] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[1] == 'X') {
-        check.player = 2;
-        return check;
+
+    return checks;
+  }
+
+  static int findResult(List<String> game) {
+    for (int i = 0; i < 9; i += 3) {
+      if ((game[i] == game[i + 1]) &&
+          (game[i + 1] == game[i + 2]) &&
+          (game[i] != '')) {
+        if (game[i] == 'O') {
+          return 1;
+        } else if (game[i] == 'X') {
+          return 2;
+        }
       }
     }
-    if (games[2] == games[5] && games[2] == games[8] && games[2] != "") {
-      check.matchs = [2, 5, 8];
-      if (games[2] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[2] == 'X') {
-        check.player = 2;
-        return check;
+
+    for (int i = 0; i < 3; i++) {
+      if ((game[i] == game[i + 3]) &&
+          (game[i + 3] == game[i + 6]) &&
+          (game[i] != '')) {
+        if (game[i] == 'O') {
+          return 1;
+        } else if (game[i] == 'X') {
+          return 2;
+        }
       }
     }
-    if (games[0] == games[4] && games[0] == games[8] && games[0] != "") {
-      check.matchs = [0, 4, 8];
-      if (games[0] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[0] == 'X') {
-        check.player = 2;
-        return check;
+
+    if ((game[0] == game[4]) && (game[4] == game[8]) && (game[0] != '')) {
+      if (game[0] == 'O') {
+        return 1;
+      } else if (game[0] == 'X') {
+        return 2;
+      }
+    } else if (game[2] == game[4] && game[4] == game[6] && game[2] != '') {
+      if (game[2] == 'O') {
+        return 1;
+      } else if (game[2] == 'X') {
+        return 2;
       }
     }
-    if (games[2] == games[4] && games[2] == games[6] && games[2] != "") {
-      check.matchs = [2, 4, 6];
-      if (games[2] == 'O') {
-        check.player = 1;
-        return check;
-      } else if (games[2] == 'X') {
-        check.player = 2;
-        return check;
+
+    for (int i = 0; i < 9; i++) {
+      if (game[i] == '') {
+        return -1;
       }
     }
-    return check;
+
+    return 0;
   }
 }
