@@ -128,51 +128,51 @@ class Move {
     return checks;
   }
 
-  static int findResult(List<String> game) {
-    for (int i = 0; i < 9; i += 3) {
-      if ((game[i] == game[i + 1]) &&
-          (game[i + 1] == game[i + 2]) &&
-          (game[i] != '')) {
-        if (game[i] == 'O') {
-          return 1;
-        } else if (game[i] == 'X') {
-          return 2;
-        }
-      }
-    }
+  // static int findResult(List<String> game) {
+  //   for (int i = 0; i < 9; i += 3) {
+  //     if ((game[i] == game[i + 1]) &&
+  //         (game[i + 1] == game[i + 2]) &&
+  //         (game[i] != '')) {
+  //       if (game[i] == 'O') {
+  //         return 1;
+  //       } else if (game[i] == 'X') {
+  //         return 2;
+  //       }
+  //     }
+  //   }
 
-    for (int i = 0; i < 3; i++) {
-      if ((game[i] == game[i + 3]) &&
-          (game[i + 3] == game[i + 6]) &&
-          (game[i] != '')) {
-        if (game[i] == 'O') {
-          return 1;
-        } else if (game[i] == 'X') {
-          return 2;
-        }
-      }
-    }
+  //   for (int i = 0; i < 3; i++) {
+  //     if ((game[i] == game[i + 3]) &&
+  //         (game[i + 3] == game[i + 6]) &&
+  //         (game[i] != '')) {
+  //       if (game[i] == 'O') {
+  //         return 1;
+  //       } else if (game[i] == 'X') {
+  //         return 2;
+  //       }
+  //     }
+  //   }
 
-    if ((game[0] == game[4]) && (game[4] == game[8]) && (game[0] != '')) {
-      if (game[0] == 'O') {
-        return 1;
-      } else if (game[0] == 'X') {
-        return 2;
-      }
-    } else if (game[2] == game[4] && game[4] == game[6] && game[2] != '') {
-      if (game[2] == 'O') {
-        return 1;
-      } else if (game[2] == 'X') {
-        return 2;
-      }
-    }
+  //   if ((game[0] == game[4]) && (game[4] == game[8]) && (game[0] != '')) {
+  //     if (game[0] == 'O') {
+  //       return 1;
+  //     } else if (game[0] == 'X') {
+  //       return 2;
+  //     }
+  //   } else if (game[2] == game[4] && game[4] == game[6] && game[2] != '') {
+  //     if (game[2] == 'O') {
+  //       return 1;
+  //     } else if (game[2] == 'X') {
+  //       return 2;
+  //     }
+  //   }
 
-    for (int i = 0; i < 9; i++) {
-      if (game[i] == '') {
-        return -1;
-      }
-    }
+  //   for (int i = 0; i < 9; i++) {
+  //     if (game[i] == '') {
+  //       return -1;
+  //     }
+  //   }
 
-    return 0;
-  }
+  //   return 0;
+  // }
 }

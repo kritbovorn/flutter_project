@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> games = List.filled(9, "");
 
   bool gameOver = false;
+  bool isPressed = true;
   int moves = 0;
   int result = 0;
 
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         games[index] = "O";
         moves++;
+        isPressed = false;
       });
       checkVictory();
       Future.delayed(const Duration(seconds: 2), () {
@@ -36,12 +38,24 @@ class _HomeScreenState extends State<HomeScreen> {
     debugPrint(Move.isEndState(games).toString());
     int res = Move.checkWinner(games).player;
     matchIndexs = Move.checkWinner(games).matchs;
+
+    if (matchIndexs.isNotEmpty) {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          isPressed = false;
+        });
+      });
+      // gameOver = true;
+    }
+
     if (res != -1) {
       setState(() {
         result = res;
         gameOver = true;
+        // isPressed = false;
       });
     }
+    // isPressed = false;
   }
 
   aiPlay() {
@@ -49,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Move best = Move.minimizer(games, 0);
       debugPrint("Game sets -> ${best.index}");
       setState(() {
+        isPressed = true;
         games[best.index] = 'X';
         moves++;
       });
@@ -64,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
       matchIndexs = [];
       moves = 0;
       result = 0;
+      isPressed = true;
     });
   }
 
@@ -102,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
         border: getBorders(index),
       ),
       child: ElevatedButton(
-        onPressed: () => playGame(index),
+        onPressed: !isPressed ? null : () => playGame(index),
         style: ElevatedButton.styleFrom(
           elevation: 0,
           onPrimary: Theme.of(context).colorScheme.surfaceTint,
