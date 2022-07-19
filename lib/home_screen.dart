@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/components/dark_keyboard.dart';
+import 'package:flutter_project/models/keyboard_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,28 +10,79 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // List<Dar> cells = List.filled(10, DarkKeyboard);
-  List<String> numbers = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-  ];
-  List<String> letters = [
-    "",
-    "ABC",
-    "DEF",
-    "GHI",
-    "JKL",
-    "MNO",
-    "PQRS",
-    "TUV",
-    "WXYZ",
+  List<KeyboardModel> models = [
+    KeyboardModel(
+        number: "1",
+        letter: "",
+        isShowLetter: false,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "2",
+        letter: "ABC",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "3",
+        letter: "DEF",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "4",
+        letter: "GHI",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "5",
+        letter: "JKL",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "6",
+        letter: "MNO",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "7",
+        letter: "PQRS",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "8",
+        letter: "TUV",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "9",
+        letter: "WXYZ",
+        isShowLetter: true,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "",
+        letter: "",
+        isShowLetter: false,
+        isShowIconButton: false,
+        isActive: false),
+    KeyboardModel(
+        number: "0",
+        letter: "",
+        isShowLetter: false,
+        isShowIconButton: false,
+        isActive: true),
+    KeyboardModel(
+        number: "",
+        letter: "",
+        isShowLetter: false,
+        isShowIconButton: true,
+        isActive: true),
   ];
   @override
   Widget build(BuildContext context) {
@@ -51,13 +103,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisCount: 3,
                   crossAxisSpacing: 6,
                   mainAxisSpacing: 8,
-                  mainAxisExtent: 65,
+                  mainAxisExtent: 55,
                 ),
-                itemCount: 9,
+                itemCount: models.length,
                 itemBuilder: (BuildContext context, int index) {
                   return DarkKeyboard(
-                    number: numbers[index],
-                    letter: letters[index],
+                    number: models[index].number,
+                    letter: models[index].letter,
+                    isActive: models[index].isActive,
+                    isShowIconButton: models[index].isShowIconButton,
+                    isShowLetter: models[index].isShowLetter,
                     onPressed: () {},
                   );
                 },
