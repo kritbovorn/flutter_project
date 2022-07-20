@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/components/dark_keyboard.dart';
+import 'package:flutter_project/dark_keyboard_widget.dart';
 import 'package:flutter_project/models/keyboard_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -89,40 +89,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Keyboard')),
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             const Expanded(
               child: SizedBox.shrink(),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: const Color(0xFF323234),
-              child: GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 6,
-                  mainAxisSpacing: 8,
-                  mainAxisExtent: 55,
-                ),
-                itemCount: models.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return DarkKeyboard(
-                    number: models[index].number,
-                    letter: models[index].letter,
-                    isActive: models[index].isActive,
-                    isShowIconButton: models[index].isShowIconButton,
-                    isShowLetter: models[index].isShowLetter,
-                    onPressed: () {
-                      debugPrint(index.toString());
-                    },
-                  );
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 80,
-            ),
+            DarkKeyboardWidget(models: models),
           ],
         ),
       ),
