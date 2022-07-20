@@ -43,6 +43,7 @@ class DarkKeyboard extends StatelessWidget {
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               primary: const Color(0xFF323234),
+              onPrimary: Theme.of(context).colorScheme.onPrimary,
               elevation: 0,
             ),
             icon: const Icon(
@@ -53,6 +54,7 @@ class DarkKeyboard extends StatelessWidget {
         : ElevatedButton(
             onPressed: isActive ? onPressed : null,
             style: ElevatedButton.styleFrom(
+              onPrimary: Theme.of(context).colorScheme.onPrimary,
               primary: primaryColor,
               onSurface: const Color(0xFF323234),
               shape: RoundedRectangleBorder(

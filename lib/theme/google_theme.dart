@@ -7,7 +7,7 @@ class GoogleTheme {
         fontSize: 84, fontWeight: FontWeight.w300, letterSpacing: -1.5),
     headline2: GoogleFonts.prompt(
         fontSize: 52, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3: GoogleFonts.prompt(fontSize: 42, fontWeight: FontWeight.w400),
+    headline3: GoogleFonts.prompt(fontSize: 28, fontWeight: FontWeight.w400),
     headline4: GoogleFonts.prompt(
       fontSize: 16,
       fontWeight: FontWeight.w600,

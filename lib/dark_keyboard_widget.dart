@@ -12,32 +12,36 @@ class DarkKeyboardWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Container(
-              padding: const EdgeInsets.all(8),
-              color: const Color(0xFF323234),
-              child: GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 6,
-                  mainAxisSpacing: 8,
-                  mainAxisExtent: 55,
-                ),
-                itemCount: models.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return DarkKeyboard(
-                    number: models[index].number,
-                    letter: models[index].letter,
-                    isActive: models[index].isActive,
-                    isShowIconButton: models[index].isShowIconButton,
-                    isShowLetter: models[index].isShowLetter,
-                    onPressed: () {
-                      debugPrint(index.toString());
-                    },
-                  );
-                },
-              ),
-            );
+      padding: const EdgeInsets.all(8),
+      color: const Color(0xFF323234),
+      child: GridView.builder(
+        shrinkWrap: true,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 6,
+          mainAxisSpacing: 8,
+          mainAxisExtent: 55,
+        ),
+        itemCount: models.length,
+        itemBuilder: (BuildContext context, int index) {
+          return DarkKeyboard(
+            number: models[index].number,
+            letter: models[index].letter,
+            isActive: models[index].isActive,
+            isShowIconButton: models[index].isShowIconButton,
+            isShowLetter: models[index].isShowLetter,
+            onPressed: () {
+              debugPrint(models[index].isShowLetter
+                  ? "${index + 1}"
+                  : models[index].isShowIconButton
+                      ? "Back"
+                      : "${index - index}");
+            },
+          );
+        },
+      ),
+    );
   }
 }
