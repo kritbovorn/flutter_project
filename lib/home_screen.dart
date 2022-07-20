@@ -48,6 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Text('Show AlertDialog()'),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Number',
+                  fillColor: Colors.white54,
+                ),
+              ),
+            ),
             DarkKeyboardWidget(models: models),
           ],
         ),
