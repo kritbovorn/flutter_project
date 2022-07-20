@@ -86,6 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
         isActive: true),
   ];
 
+  int currentStep = 0;
+
   Future<void> showAlert() async {
     showDialog(
       context: context,
