@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-class DarkKeyboard extends StatelessWidget {
+class DarkKeyboardComponent extends StatelessWidget {
   final String number;
   final String letter;
   final Color? fontColor;
@@ -17,7 +17,7 @@ class DarkKeyboard extends StatelessWidget {
   final bool? isShowLetter;
   final bool isActive;
   final bool isShowIconButton;
-  const DarkKeyboard({
+  const DarkKeyboardComponent({
     Key? key,
     required this.number,
     required this.letter,

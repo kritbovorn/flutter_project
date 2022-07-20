@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_project/alert_confirm_widget.dart';
-import 'package:flutter_project/dark_keyboard_widget.dart';
-import 'package:flutter_project/models/keyboard_model.dart';
+import 'package:flutter_project/keyboard/keyboard_widget/dark_keyboard_widget.dart';
+import 'package:flutter_project/keyboard/keyboard_model/keyboard_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({

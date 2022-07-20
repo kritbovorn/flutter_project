@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:flutter_project/components/dark_keyboard.dart';
-import 'package:flutter_project/models/keyboard_model.dart';
+import 'package:flutter_project/keyboard/keyboard_component/dark_keyboard_component.dart';
+import 'package:flutter_project/keyboard/keyboard_model/keyboard_model.dart';
 
 class DarkKeyboardWidget extends StatelessWidget {
   final List<KeyboardModel> models;
@@ -26,7 +26,7 @@ class DarkKeyboardWidget extends StatelessWidget {
         ),
         itemCount: models.length,
         itemBuilder: (BuildContext context, int index) {
-          return DarkKeyboard(
+          return DarkKeyboardComponent(
             number: models[index].number,
             letter: models[index].letter,
             isActive: models[index].isActive,
