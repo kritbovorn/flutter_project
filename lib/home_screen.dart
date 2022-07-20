@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/alert_confirm_widget.dart';
 import 'package:flutter_project/dark_keyboard_widget.dart';
 import 'package:flutter_project/models/keyboard_model.dart';
 
@@ -84,6 +85,17 @@ class _HomeScreenState extends State<HomeScreen> {
         isShowIconButton: true,
         isActive: true),
   ];
+
+  Future<void> showAlert() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const AlertConfirmWidget();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,6 +106,13 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const Expanded(
               child: SizedBox.shrink(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 32),
+              child: ElevatedButton(
+                onPressed: () => showAlert(),
+                child: const Text('Show AlertDialog()'),
+              ),
             ),
             DarkKeyboardWidget(models: models),
           ],
