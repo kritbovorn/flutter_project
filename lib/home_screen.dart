@@ -38,6 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    textEditingController.dispose();
+  }
+
   void changeState() {
     if (textEditingController.text.isNotEmpty) {
       hasShowIcon = true;
@@ -86,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   setState(() {
                     isShowKeyboard = !isShowKeyboard;
+                    FocusScope.of(context).unfocus();
                   });
                 },
                 child: isShowKeyboard
@@ -103,9 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   letterSpacing: 8,
                 ),
                 controller: textEditingController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isShowKeyboard = !isShowKeyboard;
+                      });
+                      FocusScope.of(context).unfocus();
+                    },
+                    icon: isShowKeyboard
+                        ? const Icon(Icons.keyboard_hide_outlined)
+                        : const Icon(Icons.keyboard),
+                  ),
                   hintText: 'กรุณากรอกรหัสซิมการ์ด',
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                       fontSize: 18, color: Colors.black38, letterSpacing: 1.5),
                   fillColor: Colors.white54,
                 ),
