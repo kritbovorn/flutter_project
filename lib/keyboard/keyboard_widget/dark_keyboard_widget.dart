@@ -7,10 +7,14 @@ import 'package:flutter_project/keyboard/keyboard_model/keyboard_model.dart';
 class DarkKeyboardWidget extends StatelessWidget {
   final List<KeyboardModel> models;
   final Function(String) values;
+  final bool hasShowIcon;
+  final bool hasActive;
   const DarkKeyboardWidget({
     Key? key,
     required this.models,
     required this.values,
+    required this.hasShowIcon,
+    required this.hasActive,
   }) : super(key: key);
 
   @override
@@ -29,6 +33,10 @@ class DarkKeyboardWidget extends StatelessWidget {
         ),
         itemCount: models.length,
         itemBuilder: (BuildContext context, int index) {
+          if (index == 11) {
+            models[index].isActive = hasActive;
+            models[index].isShowIconButton = hasShowIcon;
+          }
           return DarkKeyboardComponent(
             number: models[index].number,
             letter: models[index].letter,
@@ -36,12 +44,11 @@ class DarkKeyboardWidget extends StatelessWidget {
             isShowIconButton: models[index].isShowIconButton,
             isShowLetter: models[index].isShowLetter,
             onPressed: () {
-              debugPrint(models[index].isShowLetter
+              result = models[index].isShowLetter
                   ? result = "${index + 1}"
                   : models[index].isShowIconButton
-                      ? result = "Back"
-                      : result = "${index - index}");
-              debugPrint('Result is $result');
+                      ? result = "remove"
+                      : result = "${index - index}";
               values(result);
             },
           );

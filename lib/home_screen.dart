@@ -18,6 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController textEditingController = TextEditingController();
   List<String> results = [];
   String result = "";
+  bool hasShowIcon = false;
+  bool hasActive = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Future<void> showAlert() async {
     showDialog(
       context: context,
@@ -28,21 +36,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  String addResult(String value) {
-    debugPrint("32 $result");
-    if (result == "") {
-      if (value == "Back") {
-        result = "";
-      }
+  void changeState() {
+    if (textEditingController.text.isNotEmpty) {
+      hasShowIcon = true;
+      hasActive = true;
+    } else {
+      hasActive = false;
+      hasShowIcon = false;
     }
+  }
 
-    if (value == "Back") {
+  String addResult(String value) {
+    if (value == "remove") {
       result = result.substring(0, result.length - 1);
-      debugPrint("36 $result");
     } else {
       result += value;
     }
-
     return result;
   }
 
@@ -73,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
                 controller: textEditingController,
-                // onChanged: (value) => results = value,
                 decoration: const InputDecoration(
                   hintText: 'กรุณากรอกรหัสซิมการ์ด',
                   fillColor: Colors.white54,
@@ -81,9 +89,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             DarkKeyboardWidget(
+                hasActive: hasActive,
+                hasShowIcon: hasShowIcon,
                 models: models,
                 values: (value) {
                   textEditingController.text = addResult(value);
+
+                  setState(() {
+                    changeState();
+                  });
                 }),
           ],
         ),
