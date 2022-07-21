@@ -86,6 +86,6 @@ List<KeyboardModel> models = [
       number: "",
       letter: "",
       isShowLetter: false,
-      isShowIconButton: true,
-      isActive: true),
+      isShowIconButton: false,
+      isActive: false),
 ];
