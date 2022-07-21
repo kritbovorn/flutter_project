@@ -6,9 +6,11 @@ import 'package:flutter_project/keyboard/keyboard_model/keyboard_model.dart';
 
 class DarkKeyboardWidget extends StatelessWidget {
   final List<KeyboardModel> models;
+  final Function(String) values;
   const DarkKeyboardWidget({
     Key? key,
     required this.models,
+    required this.values,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class DarkKeyboardWidget extends StatelessWidget {
                       ? result = "Back"
                       : result = "${index - index}");
               debugPrint('Result is $result');
-              
+              values(result);
             },
           );
         },

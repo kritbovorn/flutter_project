@@ -15,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TextEditingController textEditingController = TextEditingController();
+  List<String> results = [];
+  String result = "";
   Future<void> showAlert() async {
     showDialog(
       context: context,
@@ -23,6 +26,24 @@ class _HomeScreenState extends State<HomeScreen> {
         return const AlertConfirmWidget();
       },
     );
+  }
+
+  String addResult(String value) {
+    debugPrint("32 $result");
+    if (result == "") {
+      if (value == "Back") {
+        result = "";
+      }
+    }
+
+    if (value == "Back") {
+      result = result.substring(0, result.length - 1);
+      debugPrint("36 $result");
+    } else {
+      result += value;
+    }
+
+    return result;
   }
 
   @override
@@ -51,13 +72,19 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
+                controller: textEditingController,
+                // onChanged: (value) => results = value,
                 decoration: const InputDecoration(
-                  hintText: 'Number',
+                  hintText: 'กรุณากรอกรหัสซิมการ์ด',
                   fillColor: Colors.white54,
                 ),
               ),
             ),
-            DarkKeyboardWidget(models: models),
+            DarkKeyboardWidget(
+                models: models,
+                values: (value) {
+                  textEditingController.text = addResult(value);
+                }),
           ],
         ),
       ),
