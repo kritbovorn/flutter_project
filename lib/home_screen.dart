@@ -81,9 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
+                style: const TextStyle(
+                  color: Colors.black45,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 8,
+                ),
                 controller: textEditingController,
                 decoration: const InputDecoration(
                   hintText: 'กรุณากรอกรหัสซิมการ์ด',
+                  hintStyle: TextStyle(
+                      fontSize: 18, color: Colors.black38, letterSpacing: 1.5),
                   fillColor: Colors.white54,
                 ),
               ),
