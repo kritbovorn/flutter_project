@@ -21,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool hasShowIcon = false;
   bool hasActive = false;
 
+  bool isShowKeyboard = false;
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-        bottom: false,
+        bottom: isShowKeyboard ? false : true,
         child: Column(
           children: [
             const Expanded(
@@ -76,6 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ElevatedButton(
                 onPressed: () => showAlert(),
                 child: const Text('Show AlertDialog()'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 32),
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    isShowKeyboard = !isShowKeyboard;
+                  });
+                },
+                child: isShowKeyboard
+                    ? const Text('Hide Keyboard')
+                    : const Text('Show keyboard'),
               ),
             ),
             Padding(
@@ -96,17 +111,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            DarkKeyboardWidget(
-                hasActive: hasActive,
-                hasShowIcon: hasShowIcon,
-                models: models,
-                values: (value) {
-                  textEditingController.text = addResult(value);
+            if (isShowKeyboard)
+              DarkKeyboardWidget(
+                  hasActive: hasActive,
+                  hasShowIcon: hasShowIcon,
+                  models: models,
+                  values: (value) {
+                    textEditingController.text = addResult(value);
 
-                  setState(() {
-                    changeState();
-                  });
-                }),
+                    setState(() {
+                      changeState();
+                    });
+                  }),
           ],
         ),
       ),
