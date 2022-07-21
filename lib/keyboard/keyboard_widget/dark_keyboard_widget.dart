@@ -13,6 +13,7 @@ class DarkKeyboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String result = '';
     return Container(
       padding: const EdgeInsets.all(8),
       color: const Color(0xFF323234),
@@ -34,10 +35,12 @@ class DarkKeyboardWidget extends StatelessWidget {
             isShowLetter: models[index].isShowLetter,
             onPressed: () {
               debugPrint(models[index].isShowLetter
-                  ? "${index + 1}"
+                  ? result = "${index + 1}"
                   : models[index].isShowIconButton
-                      ? "Back"
-                      : "${index - index}");
+                      ? result = "Back"
+                      : result = "${index - index}");
+              debugPrint('Result is $result');
+              
             },
           );
         },
