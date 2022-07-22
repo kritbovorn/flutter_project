@@ -1,10 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:flutter_project/alert_confirm_widget.dart';
 import 'package:flutter_project/keyboard/keyboard_widget/dark_keyboard_widget.dart';
 import 'package:flutter_project/keyboard/keyboard_model/keyboard_model.dart';
 import 'package:flutter_project/widgets/container_sex.dart';
+import 'package:flutter_project/widgets/text_form_field_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -16,20 +16,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController textEditingController = TextEditingController();
-  List<String> results = [];
+  late TextEditingController textEditingController;
   String result = "";
   bool hasShowIcon = false;
   bool hasActive = false;
 
   bool isShowKeyboard = false;
-
-  ///////
   bool isSex = true;
 
   @override
   void initState() {
     super.initState();
+    textEditingController = TextEditingController();
   }
 
   Future<void> showAlert() async {
@@ -83,14 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const Expanded(
               child: SizedBox.shrink(),
             ),
-            Container(
-              color: const Color.fromARGB(255, 108, 147, 44),
-              width: MediaQuery.of(context).size.width,
-              height: 200,
-              child: ContainerSex(
-                isSex: isSex,
-                onPressed: () => setState(() => isSex = !isSex),
-              ),
+            ContainerSex(
+              isSex: isSex,
+              onPressed: () => setState(() => isSex = !isSex),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
@@ -103,10 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    isShowKeyboard = !isShowKeyboard;
-                    FocusScope.of(context).unfocus();
-                  });
+                  setState(() => isShowKeyboard = !isShowKeyboard);
+                  FocusScope.of(context).unfocus();
                 },
                 child: isShowKeyboard
                     ? const Text('Hide Keyboard')
@@ -115,31 +106,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(
-                style: const TextStyle(
-                  color: Colors.black45,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 8,
-                ),
-                controller: textEditingController,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isShowKeyboard = !isShowKeyboard;
-                      });
-                      FocusScope.of(context).unfocus();
-                    },
-                    icon: isShowKeyboard
-                        ? const Icon(Icons.keyboard_hide_outlined)
-                        : const Icon(Icons.keyboard),
-                  ),
-                  hintText: 'กรุณากรอกรหัสพลเมือง',
-                  hintStyle: const TextStyle(
-                      fontSize: 18, color: Colors.black38, letterSpacing: 1.5),
-                  fillColor: Colors.white54,
-                ),
+              child: TextFormFieldWidget(
+                textEditingController: textEditingController,
+                isShowKeyboard: isShowKeyboard,
+                onPressed: () =>
+                    setState(() => isShowKeyboard = !isShowKeyboard),
               ),
             ),
             if (isShowKeyboard)
