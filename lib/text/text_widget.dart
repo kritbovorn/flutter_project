@@ -9,10 +9,13 @@ class TextWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
-    return  Text(
-       title,
-       style: Theme.of(context).textTheme.headline4,
-     );
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: Theme.of(context)
+          .textTheme
+          .headline4!
+          .copyWith(color: Colors.white70),
+    );
   }
 }

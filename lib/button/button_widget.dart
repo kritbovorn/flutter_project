@@ -5,21 +5,19 @@ class ButtonWidget extends StatelessWidget {
   final IconData iconData;
   final String title;
   final VoidCallback onPressed;
-  final bool isSelected;
   final double? wid;
   final Color? primaryColor;
-  final Color textColor;
+  final Color? textColor;
   final Color? iconColor;
   const ButtonWidget({
     Key? key,
     required this.iconData,
     required this.title,
     required this.onPressed,
-    required this.isSelected,
     this.wid,
     this.primaryColor,
-    required this.textColor,
-    this.iconColor,
+    this.textColor = Colors.black,
+    this.iconColor = Colors.black,
   }) : super(key: key);
 
   @override
@@ -29,10 +27,7 @@ class ButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         side: BorderSide.none,
-        primary: primaryColor,
-        shadowColor: Colors.transparent,
-        // onPrimary: Colors.transparent,
-        // maximumSize: const Size(240, 60),
+        primary: primaryColor ?? const Color.fromARGB(255, 226, 226, 226),
         minimumSize: const Size(140, 60),
       ),
       child: Row(
@@ -45,7 +40,6 @@ class ButtonWidget extends StatelessWidget {
             title,
             style: TextStyle(
               color: textColor,
-              // color: Colors.white,
             ),
           ),
         ],

@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SizedBox.shrink(),
             ),
             Container(
-              color: Colors.red.withOpacity(0.3),
+              color: const Color.fromARGB(255, 108, 147, 44),
               width: MediaQuery.of(context).size.width,
               height: 200,
               child: Column(
@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 255, 251, 254),
+                              color: const Color.fromARGB(255, 226, 226, 226),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             width: 260,
@@ -112,40 +112,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               ButtonWidget(
-                                iconData: Icons.male,
-                                title: isSex ? 'Female' : 'Male',
-                                onPressed: () {
-                                  setState(() {
-                                    isSex = !isSex;
-                                  });
-                                },
-                                isSelected: isSex,
-                                textColor: Colors.black,
+                                iconData: Icons.woman,
+                                title: 'Female',
+                                onPressed: () => setState(() => isSex = !isSex),
                               ),
                               ButtonWidget(
-                                iconData: Icons.female,
-                                title: !isSex ? 'Male' : 'FeMale',
-                                onPressed: () {
-                                  setState(() {
-                                    isSex = !isSex;
-                                  });
-                                },
-                                isSelected: !isSex,
-                                textColor: Colors.black,
+                                iconData: Icons.man,
+                                title: 'Male',
+                                onPressed: () => setState(() => isSex = !isSex),
                               ),
                             ],
                           ),
                           ButtonWidget(
-                            primaryColor: Colors.blue,
-                            iconData: !isSex ? Icons.male : Icons.female,
+                            primaryColor:
+                                const Color.fromARGB(255, 22, 84, 135),
+                            iconData: isSex ? Icons.man : Icons.woman,
                             title: isSex ? 'Male' : 'FeMale',
-                            onPressed: () {
-                              setState(() {
-                                isSex = !isSex;
-                              });
-                            },
+                            onPressed: () {},
                             iconColor: Colors.white,
-                            isSelected: !isSex,
                             textColor: Colors.white,
                           ),
                         ],
@@ -202,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? const Icon(Icons.keyboard_hide_outlined)
                         : const Icon(Icons.keyboard),
                   ),
-                  hintText: 'กรุณากรอกรหัสซิมการ์ด',
+                  hintText: 'กรุณากรอกรหัสพลเมือง',
                   hintStyle: const TextStyle(
                       fontSize: 18, color: Colors.black38, letterSpacing: 1.5),
                   fillColor: Colors.white54,
