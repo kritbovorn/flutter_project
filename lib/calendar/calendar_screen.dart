@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/widgets/action_widget.dart';
 
 const Color backgroundScreen = Color(0xFF6A6A6A);
 const Color dateColor = Color(0xFF595959);
@@ -220,12 +221,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                         ),
                       ),
-
+                      // ***  Day
                       Expanded(
                         flex: 8,
                         child: Column(
                           children: [
-                            // ***  Day
                             Expanded(
                               flex: 11,
                               child: SizedBox(
@@ -280,6 +280,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                 ),
                               ),
                             ),
+                            // *** Footer
                             Expanded(
                               flex: 6,
                               child: Column(
@@ -291,40 +292,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   Expanded(
                                     flex: 15,
                                     child: Row(
-                                      children: [
-                                        const Expanded(
+                                      children: const [
+                                        Expanded(
                                           child: SizedBox.shrink(),
                                         ),
-                                        Expanded(
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 1,
-                                                child: TextButton(
-                                                  child: const Text(
-                                                    'CANCEL',
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                  onPressed: () {},
-                                                ),
-                                              ),
-                                              Expanded(
-                                                flex: 1,
-                                                child: TextButton(
-                                                  child: const Text(
-                                                    'OK',
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                  onPressed: () {},
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        ActionWidget(),
                                       ],
                                     ),
                                   ),
