@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
+import 'package:flutter_project/calendar/sections/week_section.dart';
 
 const Color backgroundScreen = Color(0xFF6A6A6A);
 const Color dateColor = Color(0xFF595959);
@@ -75,45 +76,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       ),
                       // *** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
-                        child: SizedBox(
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              double ratio = (screenSize.width / 7) /
-                                  (constraints.maxHeight);
-                              double pw = constraints.maxWidth * 0.03;
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  GridView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: pw),
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 7,
-                                      childAspectRatio: ratio,
-                                    ),
-                                    itemCount: date.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Center(
-                                        child: Text(
-                                          date[index],
-                                          style: const TextStyle(
-                                            color: weekColor,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
+                        child: WeekSection(date: date),
                       ),
                       // ***  Day
                       Expanded(
