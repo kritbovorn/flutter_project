@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
+import 'package:flutter_project/calendar/sections/change_month_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
-import 'package:flutter_project/calendar/widgets/calendar_header_widget.dart';
 
 const Color backgroundScreen = Color(0xFF6A6A6A);
 const Color dateColor = Color(0xFF595959);
@@ -51,32 +52,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           height: screenSize.height * 0.6,
           child: Column(
             children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  color: Colors.red,
-                  child: Column(
-                    children: [
-                      // *** Header
-                      Expanded(
-                        flex: 24,
-                        child: Container(
-                          color: Colors.red,
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              double pw = constraints.maxWidth * 0.08;
-                              return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: pw),
-                                child: const CalendarHeaderWidget(),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              const CalendarHeaderSection(),
               Expanded(
                 flex: 9,
                 child: SizedBox(
@@ -91,43 +67,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               double pw = constraints.maxWidth * 0.04;
                               return Padding(
                                 padding: EdgeInsets.symmetric(horizontal: pw),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(Icons.arrow_back_ios),
-                                      iconSize: 17,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Text(
-                                          'มีนาคม',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 17,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          '2565',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    IconButton(
-                                      onPressed: () {},
-                                      iconSize: 17,
-                                      icon: const Icon(Icons.arrow_forward_ios),
-                                    )
-                                  ],
-                                ),
+                                child: const ChangeMonthSection(),
                               );
                             },
                           ),
