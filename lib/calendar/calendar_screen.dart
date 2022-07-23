@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
+import 'package:flutter_project/calendar/widgets/calendar_header_widget.dart';
 
 const Color backgroundScreen = Color(0xFF6A6A6A);
 const Color dateColor = Color(0xFF595959);
@@ -66,55 +67,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               double pw = constraints.maxWidth * 0.08;
                               return Padding(
                                 padding: EdgeInsets.symmetric(horizontal: pw),
-                                child: Column(
-                                  children: [
-                                    const Expanded(
-                                      child: SizedBox.shrink(),
-                                    ),
-                                    Expanded(
-                                      flex: 3,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            '2565',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              height: 0.5,
-                                            ),
-                                          ),
-                                          Row(
-                                            children: const [
-                                              Text(
-                                                'อาทิตย์,\t',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 32,
-                                                ),
-                                              ),
-                                              Text(
-                                                'มีนาคม\t',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 32,
-                                                ),
-                                              ),
-                                              Text(
-                                                '16',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 32,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                child: const CalendarHeaderWidget(),
                               );
                             },
                           ),
