@@ -60,25 +60,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Column(
                     children: [
                       // *** Month : March and Year
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.zero,
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              double pw = constraints.maxWidth * 0.04;
-                              return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: pw),
-                                child: const ChangeMonthSection(),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
+                      const ChangeMonthSection(),
                       // *** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
                         child: WeekSection(date: date),
                       ),
-                      // ***  Day
+                      // ***  Day: 1, 2, 3, 4, ...
                       Expanded(
                         flex: 8,
                         child: Column(

@@ -6,37 +6,50 @@ class ChangeMonthSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios),
-          iconSize: 17,
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.zero,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            double pw = constraints.maxWidth * 0.04;
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: pw),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_back_ios),
+                    iconSize: 17,
+                  ),
+                  Row(
+                    children: const [
+                      CalendarText(
+                        title: 'มีนาคม',
+                        fontColor: Colors.black,
+                        fontSize: 17,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      CalendarText(
+                        title: '2565',
+                        fontColor: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    iconSize: 17,
+                    icon: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
-        Row(
-          children: const [
-            CalendarText(
-              title: 'มีนาคม',
-              fontColor: Colors.black,
-              fontSize: 17,
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            CalendarText(
-              title: '2565',
-              fontColor: Colors.black,
-              fontSize: 16,
-            ),
-          ],
-        ),
-        IconButton(
-          onPressed: () {},
-          iconSize: 17,
-          icon: const Icon(Icons.arrow_forward_ios),
-        ),
-      ],
+      ),
     );
   }
 }
