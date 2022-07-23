@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+const Color backgroundScreen = Color(0xFF6A6A6A);
+const Color dateColor = Color(0xFF595959);
+const Color weekColor = Color(0xFF9A9A9A);
+const Color dateSelectedColor = Colors.white;
+const Color dateSelectedBackgroundColor = Colors.red;
+
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
 
@@ -11,17 +17,33 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List<int> d = List.generate(31, (index) => index + 1);
   List<String> date = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
+  int selectedDateIndex = 1;
+
   prin() {
     debugPrint(d.toString());
+  }
+
+  Color backgroundSelected(int index) {
+    Color backgroundSelect = selectedDateIndex == d[index]
+        ? dateSelectedBackgroundColor
+        : Colors.transparent;
+    return backgroundSelect;
+  }
+
+  Color colorSelected(int index) {
+    Color colorSelect =
+        selectedDateIndex == d[index] ? Colors.white : dateColor;
+    return colorSelect;
   }
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: backgroundScreen,
       body: Center(
         child: Container(
-          color: Colors.red,
+          color: Colors.white,
           width: screenSize.width * 0.9,
           height: screenSize.height * 0.6,
           child: Column(
@@ -32,18 +54,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   color: Colors.red,
                   child: Column(
                     children: [
+                      // *** Header
                       Expanded(
                         flex: 24,
                         child: Container(
-                          color: Colors.indigo,
+                          color: Colors.red,
                           child: LayoutBuilder(
                             builder: (context, constraints) {
                               double pw = constraints.maxWidth * 0.08;
                               return Padding(
                                 padding: EdgeInsets.symmetric(horizontal: pw),
                                 child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.center,
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Expanded(
                                       child: SizedBox.shrink(),
@@ -69,7 +90,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 34,
-                                                  // height: 0,
                                                 ),
                                               ),
                                               Text(
@@ -104,15 +124,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
               ),
               Expanded(
                 flex: 9,
-                child: Container(
-                  color: Colors.green,
+                child: SizedBox(
                   child: Column(
                     children: [
-                      // *** March and Year
+                      // *** Month : March and Year
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.zero,
-                          color: Colors.blue,
                           child: LayoutBuilder(
                             builder: (context, constraints) {
                               double pw = constraints.maxWidth * 0.04;
@@ -125,7 +143,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     IconButton(
                                       onPressed: () {},
                                       icon: const Icon(Icons.arrow_back_ios),
-                                      iconSize: 14,
+                                      iconSize: 17,
                                     ),
                                     Row(
                                       children: const [
@@ -143,14 +161,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           '2565',
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 17,
+                                            fontSize: 16,
                                           ),
                                         ),
                                       ],
                                     ),
                                     IconButton(
                                       onPressed: () {},
-                                      iconSize: 14,
+                                      iconSize: 17,
                                       icon: const Icon(Icons.arrow_forward_ios),
                                     )
                                   ],
@@ -160,18 +178,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                         ),
                       ),
-                      // *** Date Sun Sat Fri THU WED TUE MON
+                      // *** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
-                        child: Container(
-                          color: Colors.orange,
+                        child: SizedBox(
                           child: LayoutBuilder(
                             builder: (context, constraints) {
                               double ratio = (screenSize.width / 7) /
                                   (constraints.maxHeight);
                               double pw = constraints.maxWidth * 0.03;
-                              // debugPrint(ratio.toString());
                               return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   GridView.builder(
                                     physics:
@@ -187,7 +204,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     itemCount: date.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      return Center(child: Text(date[index]));
+                                      return Center(
+                                        child: Text(
+                                          date[index],
+                                          style: const TextStyle(
+                                            color: weekColor,
+                                          ),
+                                        ),
+                                      );
                                     },
                                   ),
                                 ],
@@ -231,11 +255,21 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              selectedDateIndex = d[index];
+                                              debugPrint(
+                                                  selectedDateIndex.toString());
+                                            });
+                                          },
+                                          style: TextButton.styleFrom(
+                                            backgroundColor:
+                                                backgroundSelected(index),
+                                          ),
                                           child: Text(
                                             d[index].toString(),
-                                            style: const TextStyle(
-                                              color: Colors.black,
+                                            style: TextStyle(
+                                              color: colorSelected(index),
                                               fontSize: 14,
                                             ),
                                           ),
@@ -250,20 +284,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               flex: 6,
                               child: Column(
                                 children: [
-                                  Expanded(
+                                  const Expanded(
                                     flex: 10,
-                                    child: Container(
-                                      color: Colors.pink,
-                                    ),
+                                    child: SizedBox.shrink(),
                                   ),
                                   Expanded(
                                     flex: 15,
                                     child: Row(
                                       children: [
-                                        Expanded(
-                                          child: Container(
-                                            color: Colors.yellow,
-                                          ),
+                                        const Expanded(
+                                          child: SizedBox.shrink(),
                                         ),
                                         Expanded(
                                           child: Row(
