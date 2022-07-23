@@ -48,6 +48,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           color: Colors.blue,
                         ),
                       ),
+                      // *** Date Sun Sat Fri THU WED TUE MON
                       Expanded(
                         child: Container(
                           color: Colors.orange,
@@ -55,7 +56,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             builder: (context, constraints) {
                               double ratio = (screenSize.width / 7) /
                                   (constraints.maxHeight);
-                              debugPrint(ratio.toString());
+                              // debugPrint(ratio.toString());
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -81,52 +82,46 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           ),
                         ),
                       ),
-                      // Date Sun Sat Fri THU WED TUE MON
 
                       Expanded(
                         flex: 8,
                         child: Column(
                           children: [
+                            // ***  Day
                             Expanded(
                               flex: 11,
-                              child: Row(
-                                children: [
-                                  const Expanded(
-                                    child: SizedBox.shrink(),
-                                  ),
-                                  // Day 1, 2, 3, 4, 5, 6, 7, ...
-                                  Expanded(
-                                    flex: 19,
-                                    child: GridView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      // padding: const EdgeInsets.only( left: 15, right: 15),
+                              child: SizedBox(
+                                child: LayoutBuilder(
+                                  builder: (context, constraints) {
+                                    double ratio = (screenSize.width / 7) /
+                                        (constraints.maxHeight / 5);
+                                    double main = (constraints.maxHeight / 5);
+                                    debugPrint(
+                                        'Max height: ${constraints.maxHeight}');
+                                    debugPrint(ratio.toString());
+                                    return GridView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                          SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 7,
-                                        // mainAxisExtent: 1,
+                                        crossAxisSpacing: 3,
+                                        // childAspectRatio: ratio,
+                                        mainAxisExtent: main,
                                       ),
                                       itemCount: d.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Center(
-                                          child: Text(
-                                            d[index].toString(),
-                                            style: const TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14,
-                                            ),
-                                          ),
+                                        return Container(
+                                          color: const Color.fromARGB(
+                                              255, 233, 214, 44),
                                         );
                                       },
-                                    ),
-                                  ),
-                                  const Expanded(
-                                    child: SizedBox.shrink(),
-                                  ),
-                                ],
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                             Expanded(
