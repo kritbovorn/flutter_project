@@ -56,6 +56,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             builder: (context, constraints) {
                               double ratio = (screenSize.width / 7) /
                                   (constraints.maxHeight);
+                              double wp = constraints.maxWidth * 0.03;
                               // debugPrint(ratio.toString());
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +64,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   GridView.builder(
                                     physics:
                                         const NeverScrollableScrollPhysics(),
-                                    padding: EdgeInsets.zero,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: wp),
                                     shrinkWrap: true,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
@@ -96,11 +98,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     double ratio = (screenSize.width / 7) /
                                         (constraints.maxHeight / 5);
                                     double main = (constraints.maxHeight / 5);
+                                    double wp = (constraints.maxWidth * 0.03);
+
                                     debugPrint(
                                         'Max height: ${constraints.maxHeight}');
                                     debugPrint(ratio.toString());
                                     return GridView.builder(
-                                      padding: EdgeInsets.zero,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: wp),
                                       shrinkWrap: true,
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -108,15 +113,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 7,
                                         crossAxisSpacing: 3,
-                                        // childAspectRatio: ratio,
                                         mainAxisExtent: main,
                                       ),
                                       itemCount: d.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
-                                          color: const Color.fromARGB(
-                                              255, 233, 214, 44),
+                                        return TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            d[index].toString(),
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                            ),
+                                          ),
                                         );
                                       },
                                     );
