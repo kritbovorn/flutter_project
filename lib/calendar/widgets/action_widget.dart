@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/calendar_screen.dart';
 import 'package:flutter_project/calendar/components/action_button.dart';
 
 class ActionWidget extends StatelessWidget {
@@ -13,18 +14,19 @@ class ActionWidget extends StatelessWidget {
             flex: 1,
             child: ActionButton(
               onPressed: () {
-                debugPrint('CANCEL');
+                debugPrint('ยกเลิก');
               },
-              title: 'CANCEL',
+              title: 'ยกเลิก',
+              fontColor: cancelButtonColor,
             ),
           ),
           Expanded(
               flex: 1,
               child: ActionButton(
                 onPressed: () {
-                  debugPrint('OK');
+                  debugPrint('ตกลง');
                 },
-                title: 'OK',
+                title: 'ตกลง',
               )),
         ],
       ),

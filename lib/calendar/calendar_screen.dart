@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/calendar/widgets/action_widget.dart';
+import 'package:flutter_project/calendar/sections/footer_section.dart';
 
 const Color backgroundScreen = Color(0xFF6A6A6A);
 const Color dateColor = Color(0xFF595959);
+const Color cancelButtonColor = Colors.red;
 const Color weekColor = Color(0xFF9A9A9A);
 const Color dateSelectedColor = Colors.white;
 const Color dateSelectedBackgroundColor = Colors.red;
@@ -16,9 +17,9 @@ class CalendarScreen extends StatefulWidget {
 
 class _CalendarScreenState extends State<CalendarScreen> {
   List<int> d = List.generate(31, (index) => index + 1);
-  List<String> date = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  List<String> date = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
 
-  int selectedDateIndex = 1;
+  int selectedDateIndex = 16;
 
   prin() {
     debugPrint(d.toString());
@@ -87,24 +88,24 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           Row(
                                             children: const [
                                               Text(
-                                                'Mon,\t',
+                                                'อาทิตย์,\t',
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 34,
+                                                  fontSize: 32,
                                                 ),
                                               ),
                                               Text(
-                                                'Mar\t',
+                                                'มีนาคม\t',
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 34,
+                                                  fontSize: 32,
                                                 ),
                                               ),
                                               Text(
                                                 '16',
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 34,
+                                                  fontSize: 32,
                                                 ),
                                               ),
                                             ],
@@ -149,7 +150,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     Row(
                                       children: const [
                                         Text(
-                                          'March',
+                                          'มีนาคม',
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 17,
@@ -281,28 +282,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               ),
                             ),
                             // *** Footer
-                            Expanded(
-                              flex: 6,
-                              child: Column(
-                                children: [
-                                  const Expanded(
-                                    flex: 10,
-                                    child: SizedBox.shrink(),
-                                  ),
-                                  Expanded(
-                                    flex: 15,
-                                    child: Row(
-                                      children: const [
-                                        Expanded(
-                                          child: SizedBox.shrink(),
-                                        ),
-                                        ActionWidget(),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            const FooterSection(),
                           ],
                         ),
                       )
