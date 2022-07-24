@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class ButtonSelected extends StatelessWidget {
@@ -8,7 +7,7 @@ class ButtonSelected extends StatelessWidget {
   final Color? iconColor;
   final Color? primaryColor;
   final VoidCallback onPressed;
-  final bool isPress;
+  final Color color;
   const ButtonSelected({
     Key? key,
     required this.name,
@@ -17,7 +16,7 @@ class ButtonSelected extends StatelessWidget {
     this.iconColor,
     this.primaryColor,
     required this.onPressed,
-    required this.isPress,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -25,19 +24,18 @@ class ButtonSelected extends StatelessWidget {
     return ElevatedButton.icon(
       icon: Icon(
         iconData,
-        color: isPress ? const Color.fromARGB(255, 226, 226, 226) : Colors.blue,
+        color: color,
       ),
       label: Text(
         name,
         style: TextStyle(
-          color:
-              isPress ? const Color.fromARGB(255, 226, 226, 226) : Colors.blue,
+          color: color,
+              
         ),
       ),
       style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary:
-              isPress ? Colors.blue : const Color.fromARGB(255, 226, 226, 226),
+          primary: color,
           minimumSize: const Size(125, 60),
           maximumSize: const Size(125, 60),
           shape: RoundedRectangleBorder(
