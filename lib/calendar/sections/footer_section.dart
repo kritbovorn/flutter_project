@@ -25,7 +25,7 @@ class FooterSection extends StatelessWidget {
             child: const SizedBox.shrink(),
           ),
           Expanded(
-            flex: secondChildFlex ?? 15,
+            flex: secondChildFlex ?? 19,
             child: Row(
               children: const [
                 Expanded(

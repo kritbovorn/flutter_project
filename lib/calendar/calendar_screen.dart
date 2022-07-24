@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
+import 'package:flutter_project/calendar/sections/days_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
@@ -22,25 +23,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List<int> d = List.generate(31, (index) => index + 1);
   List<String> date = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
 
-  int selectedDateIndex = 16;
-
-  prin() {
-    debugPrint(d.toString());
-  }
-
-  Color backgroundSelected(int index) {
-    Color backgroundSelect = selectedDateIndex == d[index]
-        ? dateSelectedBackgroundColor
-        : Colors.transparent;
-    return backgroundSelect;
-  }
-
-  Color colorSelected(int index) {
-    Color colorSelect =
-        selectedDateIndex == d[index] ? Colors.white : dateColor;
-    return colorSelect;
-  }
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -59,72 +41,19 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 child: SizedBox(
                   child: Column(
                     children: [
-                      // *** Month : March and Year
+                      // ***** Month : March and Year
                       const ChangeMonthSection(),
-                      // *** Week:  Sun Sat Fri THU WED TUE MON
+                      // ***** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
                         child: WeekSection(date: date),
                       ),
-                      // ***  Day: 1, 2, 3, 4, ...
+                      // ***** Day: 1, 2, 3, 4, ...
                       Expanded(
                         flex: 8,
                         child: Column(
                           children: [
-                            Expanded(
-                              flex: 11,
-                              child: SizedBox(
-                                child: LayoutBuilder(
-                                  builder: (context, constraints) {
-                                    double ratio = (screenSize.width / 7) /
-                                        (constraints.maxHeight / 5);
-                                    double main = (constraints.maxHeight / 5);
-                                    double pw = (constraints.maxWidth * 0.03);
-
-                                    debugPrint(
-                                        'Max height: ${constraints.maxHeight}');
-                                    debugPrint(ratio.toString());
-                                    return GridView.builder(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: pw),
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 7,
-                                        crossAxisSpacing: 3,
-                                        mainAxisExtent: main,
-                                      ),
-                                      itemCount: d.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              selectedDateIndex = d[index];
-                                              debugPrint(
-                                                  selectedDateIndex.toString());
-                                            });
-                                          },
-                                          style: TextButton.styleFrom(
-                                            backgroundColor:
-                                                backgroundSelected(index),
-                                          ),
-                                          child: Text(
-                                            d[index].toString(),
-                                            style: TextStyle(
-                                              color: colorSelected(index),
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            // *** Footer
+                            DaysSection(d: d),
+                            // ***** Footer
                             const FooterSection(),
                           ],
                         ),
@@ -132,7 +61,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
