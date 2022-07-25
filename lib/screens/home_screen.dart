@@ -9,13 +9,33 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 100,
-        height: 300,
-        color: Colors.indigo,
-        child: const TextWidget(
-          title: 'Somethings',
-          fontSize: 8,
-        ));
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(
+            height: 30,
+            child: TextWidget(
+              title: 'Hello World',
+            )),
+        const Text('Boie'),
+        const TextWidget(
+          title: 'Oksssss',
+          // height: 24,
+        ),
+        const SizedBox(
+          height: 200,
+          child: TextWidget(title: 'Third '),
+        ),
+        Container(
+            // width: 250,
+            height: 120,
+            color: Colors.indigo,
+            child: const TextWidget(
+              title: 'Somethings',
+              // fontSize: 8,
+            )),
+      ],
+    );
   }
 }
