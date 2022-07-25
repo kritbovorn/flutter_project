@@ -49,20 +49,21 @@ class _DaysSectionState extends State<DaysSection> {
               ),
               itemCount: widget.d.length,
               itemBuilder: (BuildContext context, int index) {
+                var i = index + 1;
                 return TextButton(
                   onPressed: () {
                     setState(() {
-                      selectedDateIndex = index;
+                      selectedDateIndex = i;
                       // debugPrint(selectedDateIndex.toString());
                     });
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: backgroundSelected(index),
+                    backgroundColor: backgroundSelected(i),
                   ),
                   child: Text(
-                    index.toString(),
+                    i.toString(),
                     style: TextStyle(
-                      color: colorSelected(index),
+                      color: colorSelected(i),
                       fontSize: 14,
                     ),
                   ),
