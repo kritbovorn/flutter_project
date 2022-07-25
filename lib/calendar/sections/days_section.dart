@@ -59,6 +59,7 @@ class _DaysSectionState extends State<DaysSection> {
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: backgroundSelected(i),
+                    shape: const CircleBorder(),
                   ),
                   child: Text(
                     i.toString(),
