@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
           title: const Text('Text'),
         ),
-        body: const HomeScreen(title: 'Somethings'),
+        body: const HomeScreen(),
       ),
     );
   }
