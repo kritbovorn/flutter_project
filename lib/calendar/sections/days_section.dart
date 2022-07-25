@@ -5,9 +5,11 @@ import 'package:flutter_project/calendar/calendar_screen.dart';
 
 class DaysSection extends StatefulWidget {
   final List<int> d;
+  final Function(int) getdate;
   const DaysSection({
     Key? key,
     required this.d,
+    required this.getdate,
   }) : super(key: key);
 
   @override
@@ -56,6 +58,7 @@ class _DaysSectionState extends State<DaysSection> {
                       selectedDateIndex = i;
                       // debugPrint(selectedDateIndex.toString());
                     });
+                    widget.getdate(selectedDateIndex);
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: backgroundSelected(i),
