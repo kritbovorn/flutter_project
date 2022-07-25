@@ -2,5 +2,10 @@
 
 
 
+## Resource
 
+[Get Day in Month](https://stackoverflow.com/a/69225466/5674655)  
+
+
+[First Day of week](https://api.dart.dev/stable/2.13.0/dart-core/DateTime/weekday.html)   
 

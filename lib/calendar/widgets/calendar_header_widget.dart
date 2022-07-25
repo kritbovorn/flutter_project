@@ -5,9 +5,15 @@ import 'package:flutter_project/calendar/widgets/text_widget.dart';
 
 class CalendarHeaderWidget extends StatelessWidget {
   final int date;
+  final String day;
+  final String month;
+  final int year;
   const CalendarHeaderWidget({
     Key? key,
     required this.date,
+    required this.day,
+    required this.month,
+    required this.year,
   }) : super(key: key);
 
   @override
@@ -21,20 +27,16 @@ class CalendarHeaderWidget extends StatelessWidget {
             flex: 3,
             child: SizedBox.shrink(),
           ),
-          const Expanded(
+          Expanded(
             flex: 3,
             child: TextWidget(
-              title: '2565',
+              title: '$year',
             ),
           ),
-          // Expanded(
-          //   flex: 1,
-          //   child: SizedBox.shrink(),
-          // ),
           Expanded(
             flex: 6,
             child: TextWidget(
-              title: 'อาทิตย์, มีนาคม $date',
+              title: '$day, $month $date',
             ),
           ),
           const Expanded(

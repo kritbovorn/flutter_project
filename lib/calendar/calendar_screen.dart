@@ -20,9 +20,91 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
-  List<int> d = List.generate(31, (index) => index + 1);
+  DateTime now = DateTime.now();
+  late int lastDayOfMonth;
+  late int date;
+  late String day;
+  late String month;
+  late int year;
+  late List<int> d;
+
   List<String> week = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
-  late int date = 16;
+
+  @override
+  void initState() {
+    super.initState();
+    // *! Initial value
+    // *? วันสุดท้ายของเดือน
+    lastDayOfMonth = daysInMonth(DateTime.now());
+    // *? จำนวน วันทั้งหมดใน เดือน
+    d = List.generate(lastDayOfMonth, (index) => index + 1);
+    // *? วันปัจจุบัน
+    date = now.day;
+    // *? วันในสัปดาห์
+    day = getDay(now.weekday);
+    // *? เดือน
+    month = getMonth(now.month);
+    // *? ปี
+    year = now.year + 543;
+  }
+
+  // *! Method find last day
+  int daysInMonth(DateTime date) => DateTimeRange(
+          start: DateTime(date.year, date.month, 1),
+          end: DateTime(date.year, date.month + 1))
+      .duration
+      .inDays;
+
+  String getDay(int d) {
+    String day = '';
+    switch (d) {
+      case 1:
+        day = "จันทร์";
+        break;
+      case 2:
+        day = "อังคาร";
+        break;
+      case 3:
+        day = "พุทธ";
+        break;
+      case 4:
+        day = "พฤหัสบดี";
+        break;
+      case 5:
+        day = "ศุกร์";
+        break;
+      case 6:
+        day = "เสาร์";
+        break;
+      case 7:
+        day = "อาทิตย์";
+        break;
+      default:
+        break;
+    }
+    return day;
+  }
+
+  String getMonth(int month) {
+    String m = '';
+    switch (month) {
+      case 1:
+        m = "มกราคม";
+        break;
+      case 2:
+        m = "กุมภาพันธ์ู";
+        break;
+      case 7:
+        m = "กรกฎาคม";
+        break;
+      case 8:
+        m = "สิงหาคม";
+        break;
+      default:
+        break;
+    }
+    return m;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +119,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CalendarHeaderSection(date: date),
+              CalendarHeaderSection(
+                date: date,
+                day: day,
+                month: month,
+                year: year,
+              ),
               Expanded(
                 flex: 9,
                 child: SizedBox(
@@ -56,7 +143,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           children: [
                             DaysSection(
                                 d: d,
-                                getdate: (value) => setState(() => date = value)),
+                                date: date,
+                                getdate: (value) =>
+                                    setState(() => date = value)),
                             // ***** Footer
                             const FooterSection(),
                           ],

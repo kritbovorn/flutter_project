@@ -5,9 +5,15 @@ import 'package:flutter_project/calendar/widgets/calendar_header_widget.dart';
 
 class CalendarHeaderSection extends StatelessWidget {
   final int date;
+  final String day;
+  final String month;
+  final int year;
   const CalendarHeaderSection({
     Key? key,
     required this.date,
+    required this.day,
+    required this.month,
+    required this.year,
   }) : super(key: key);
 
   @override
@@ -30,7 +36,12 @@ class CalendarHeaderSection extends StatelessWidget {
                     double pw = constraints.maxWidth * 0.08;
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: pw),
-                      child: CalendarHeaderWidget(date: date),
+                      child: CalendarHeaderWidget(
+                        date: date,
+                        day: day,
+                        month: month,
+                        year: year,
+                      ),
                     );
                   },
                 ),

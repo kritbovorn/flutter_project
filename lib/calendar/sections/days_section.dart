@@ -5,10 +5,12 @@ import 'package:flutter_project/calendar/calendar_screen.dart';
 
 class DaysSection extends StatefulWidget {
   final List<int> d;
+  final int date;
   final Function(int) getdate;
   const DaysSection({
     Key? key,
     required this.d,
+    required this.date,
     required this.getdate,
   }) : super(key: key);
 
@@ -17,7 +19,13 @@ class DaysSection extends StatefulWidget {
 }
 
 class _DaysSectionState extends State<DaysSection> {
-  int selectedDateIndex = 16;
+  late int selectedDateIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDateIndex = widget.date;
+  }
 
   Color backgroundSelected(int index) {
     Color backgroundSelect = selectedDateIndex == index
