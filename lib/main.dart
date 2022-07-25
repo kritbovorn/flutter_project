@@ -24,7 +24,13 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: GoogleTheme.darkColorScheme,
           textTheme: GoogleTheme.darkTextTheme),
-      home: const HomeScreen(),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: const Text('Text'),
+        ),
+        body: const HomeScreen(title: 'Somethings'),
+      ),
     );
   }
 }
