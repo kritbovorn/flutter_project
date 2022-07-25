@@ -9,3 +9,6 @@
 
 [First Day of week](https://api.dart.dev/stable/2.13.0/dart-core/DateTime/weekday.html)   
 
+## Problem
+
+[Incorrect use of parent data widget. expanded widgets must be placed inside flex widgets](https://stackoverflow.com/a/62982693/5674655)

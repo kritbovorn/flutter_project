@@ -18,33 +18,30 @@ class CalendarHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      // flex: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Expanded(
-            flex: 3,
-            child: SizedBox.shrink(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Expanded(
+          flex: 3,
+          child: SizedBox.shrink(),
+        ),
+        Expanded(
+          flex: 3,
+          child: TextWidget(
+            title: '$year',
           ),
-          Expanded(
-            flex: 3,
-            child: TextWidget(
-              title: '$year',
-            ),
+        ),
+        Expanded(
+          flex: 6,
+          child: TextWidget(
+            title: '$day, $month $date',
           ),
-          Expanded(
-            flex: 6,
-            child: TextWidget(
-              title: '$day, $month $date',
-            ),
-          ),
-          const Expanded(
-            flex: 3,
-            child: SizedBox.shrink(),
-          ),
-        ],
-      ),
+        ),
+        const Expanded(
+          flex: 3,
+          child: SizedBox.shrink(),
+        ),
+      ],
     );
   }
 }

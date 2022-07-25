@@ -20,26 +20,23 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          // var pw = constraints.maxWidth * (padding ?? 0.02);
-          double font = constraints.maxHeight;
-          return FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(
-              title,
-              style: TextStyle(
-                color: titleColor ?? Colors.white,
-                fontSize: font,
-                fontWeight: fontWeight,
-                height: 1,
-              ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // var pw = constraints.maxWidth * (padding ?? 0.02);
+        double font = constraints.maxHeight;
+        return FittedBox(
+          fit: BoxFit.fitWidth,
+          child: Text(
+            title,
+            style: TextStyle(
+              color: titleColor ?? Colors.white,
+              fontSize: font,
+              fontWeight: fontWeight,
+              height: 1,
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
