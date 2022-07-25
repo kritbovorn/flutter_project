@@ -21,7 +21,8 @@ class CalendarScreen extends StatefulWidget {
 
 class _CalendarScreenState extends State<CalendarScreen> {
   List<int> d = List.generate(31, (index) => index + 1);
-  List<String> date = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+  List<String> week = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+  late int date = 16;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +33,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
         child: Container(
           color: Colors.white,
           width: screenSize.width * 0.9,
-          height: screenSize.height * 0.7,
+          height: screenSize.height * 0.6,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CalendarHeaderSection(),
+              CalendarHeaderSection(date: date),
               Expanded(
                 flex: 9,
                 child: SizedBox(
@@ -45,14 +47,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       const ChangeMonthSection(),
                       // ***** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
-                        child: WeekSection(date: date),
+                        child: WeekSection(date: week),
                       ),
                       // ***** Day: 1, 2, 3, 4, ...
                       Expanded(
                         flex: 8,
                         child: Column(
                           children: [
-                            DaysSection(d: d),
+                            DaysSection(
+                                d: d,
+                                getdate: (value) => setState(() => date = value)),
                             // ***** Footer
                             const FooterSection(),
                           ],
