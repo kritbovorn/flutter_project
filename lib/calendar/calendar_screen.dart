@@ -32,7 +32,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
         child: Container(
           color: Colors.white,
           width: screenSize.width * 0.9,
-          height: screenSize.height * 0.6,
+          height: screenSize.height * 0.7,
           child: Column(
             children: [
               const CalendarHeaderSection(),
