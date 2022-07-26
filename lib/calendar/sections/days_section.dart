@@ -7,12 +7,14 @@ class DaysSection extends StatefulWidget {
   final List<int> d;
   final DateTime now;
   final int dayOfLastMonth;
+  final int lastDayCurrentMonth;
   final Function(DateTime) updateNow;
   const DaysSection({
     Key? key,
     required this.d,
     required this.now,
     required this.dayOfLastMonth,
+    required this.lastDayCurrentMonth,
     required this.updateNow,
   }) : super(key: key);
 
@@ -73,9 +75,16 @@ class _DaysSectionState extends State<DaysSection> {
                 crossAxisSpacing: 3,
                 mainAxisExtent: main,
               ),
-              itemCount: widget.d.length,
+              // itemCount: widget.d.length,
+              itemCount: widget.dayOfLastMonth == 7
+                  ? widget.lastDayCurrentMonth
+                  : widget.d.length,
               itemBuilder: (BuildContext context, int index) {
-                int i = index + 1 - widget.dayOfLastMonth;
+                int i;
+
+                widget.dayOfLastMonth == 7
+                    ? i = index + 1
+                    : i = index + 1 - widget.dayOfLastMonth;
                 if (i < 1) {
                   i = 0;
                   isNull = true;
@@ -86,15 +95,12 @@ class _DaysSectionState extends State<DaysSection> {
                   onPressed: isNull
                       ? null
                       : () {
+                          debugPrint('96 ${widget.dayOfLastMonth}');
                           // DateTime newDateTime = widget.now;
                           setState(() {
                             selectedDateIndex = i;
                             // *!  AAAAA   มารับค่า ที่นี่
-                            // updateDateTime = DateTime.utc(
-                            //   newDateTime.year,
-                            //   newDateTime.month,
-                            //   i,
-                            // );
+
                             updateDateTime =
                                 DateTime(widget.now.year, widget.now.month, i);
                             widget.updateNow(updateDateTime);

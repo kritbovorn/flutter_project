@@ -124,6 +124,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       // *! Initial value
       // *? วันสุดท้ายของเดือน
       lastDayCurrentMonth = daysInMonth(DateTime.now());
+      debugPrint('127 $lastDayCurrentMonth');
       // *?
       var lastDayOfLastMonth =
           DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
@@ -195,6 +196,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               d: d,
                               now: now,
                               dayOfLastMonth: lastDayOfLastMonths.length,
+                              lastDayCurrentMonth: lastDayCurrentMonth,
                               updateNow: (value) {
                                 setState(() {
                                   now = value;
