@@ -23,9 +23,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
   DateTime now = DateTime.now();
   late int lastDayCurrentMonth;
   late int date;
-  late String day;
-  late String month;
-  late int year;
+  // late String day;
+  // late String month;
+  // late int year;
   late List<int> d;
   late List<int> lastDayOfLastMonths;
 
@@ -38,18 +38,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
     // *? วันสุดท้ายของเดือน
     lastDayCurrentMonth = daysInMonth(DateTime.now());
     // *?
-    var lastDayOfLastMonth = DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
+    var lastDayOfLastMonth =
+        DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
     lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
     // *? จำนวน วันทั้งหมดใน เดือน
-    d = (lastDayOfLastMonths + List.generate(lastDayCurrentMonth, (index) => index + 1));
+    d = (lastDayOfLastMonths +
+        List.generate(lastDayCurrentMonth, (index) => index + 1));
     // *? วันปัจจุบัน
     date = now.day;
     // *? วันในสัปดาห์
-    day = getDay(now.weekday);
+    // day = getDay(now.weekday);
     // *? เดือน
-    month = getMonth(now.month);
+    // month = getMonth(now.month);
     // *? ปี
-    year = now.year + 543;
+    // year = now.year + 543;
   }
 
   // *! Method find last day
@@ -58,57 +60,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
           end: DateTime(date.year, date.month + 1))
       .duration
       .inDays;
-
-  String getDay(int d) {
-    String day = '';
-    switch (d) {
-      case 1:
-        day = "จันทร์";
-        break;
-      case 2:
-        day = "อังคาร";
-        break;
-      case 3:
-        day = "พุทธ";
-        break;
-      case 4:
-        day = "พฤหัสบดี";
-        break;
-      case 5:
-        day = "ศุกร์";
-        break;
-      case 6:
-        day = "เสาร์";
-        break;
-      case 7:
-        day = "อาทิตย์";
-        break;
-      default:
-        break;
-    }
-    return day;
-  }
-
-  String getMonth(int month) {
-    String m = '';
-    switch (month) {
-      case 1:
-        m = "มกราคม";
-        break;
-      case 2:
-        m = "กุมภาพันธ์ู";
-        break;
-      case 7:
-        m = "กรกฎาคม";
-        break;
-      case 8:
-        m = "สิงหาคม";
-        break;
-      default:
-        break;
-    }
-    return m;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,10 +75,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CalendarHeaderSection(
-                date: date,
-                day: day,
-                month: month,
-                year: year,
+                now: now,
               ),
               Expanded(
                 flex: 9,

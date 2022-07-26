@@ -84,6 +84,7 @@ class _DaysSectionState extends State<DaysSection> {
                       : () {
                           setState(() {
                             selectedDateIndex = i;
+                            
                           });
                         },
                   style: TextButton.styleFrom(
