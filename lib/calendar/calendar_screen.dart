@@ -135,6 +135,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
     });
   }
 
+  void updateAllDays(DateTime now) {
+    lastDayCurrentMonth = daysInMonth(now);
+    var lastDayOfLastMonth = DateTime.utc(now.year, now.month, 1).weekday;
+    lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
+
+    d = (lastDayOfLastMonths +
+        List.generate(lastDayCurrentMonth, (index) => index));
+  }
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -163,11 +172,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           setState(() {
                             now = value;
                             debugPrint('162 : $now');
+                            updateAllDays(now);
                           });
                         },
                         getAfterMonth: (value) {
                           setState(() {
                             now = value;
+                            updateAllDays(now);
                           });
                         },
                       ),
