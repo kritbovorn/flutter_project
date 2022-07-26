@@ -21,7 +21,7 @@ class DaysSection extends StatefulWidget {
 }
 
 class _DaysSectionState extends State<DaysSection> {
-  // *? ประกาศ selectedDateIndex  
+  // *? ประกาศ selectedDateIndex
   late int selectedDateIndex;
   // *   BBB ถ้าค่า  isNull  เป็นจริง  ปุ่มจะคลิกไม่ได้
   bool isNull = false;
@@ -86,17 +86,19 @@ class _DaysSectionState extends State<DaysSection> {
                   onPressed: isNull
                       ? null
                       : () {
-                          DateTime newDateTime = DateTime.now();
+                          // DateTime newDateTime = widget.now;
                           setState(() {
                             selectedDateIndex = i;
                             // *!  AAAAA   มารับค่า ที่นี่
-                            updateDateTime = DateTime.utc(
-                              newDateTime.year,
-                              newDateTime.month,
-                              i,
-                            );
+                            // updateDateTime = DateTime.utc(
+                            //   newDateTime.year,
+                            //   newDateTime.month,
+                            //   i,
+                            // );
+                            updateDateTime =
+                                DateTime(widget.now.year, widget.now.month, i);
+                            widget.updateNow(updateDateTime);
                           });
-                          widget.updateNow(updateDateTime);
                         },
                   style: TextButton.styleFrom(
                     onSurface: Colors.transparent,

@@ -29,7 +29,7 @@ String getDay(int d) {
       day = "อังคาร";
       break;
     case 3:
-      day = "พุทธ";
+      day = "พุธ";
       break;
     case 4:
       day = "พฤหัสบดี";
@@ -56,13 +56,37 @@ String getMonth(int month) {
       m = "มกราคม";
       break;
     case 2:
-      m = "กุมภาพันธ์ู";
+      m = "กุมภาพันธ์";
+      break;
+    case 3:
+      m = "มีนาคม";
+      break;
+    case 4:
+      m = "เมษายน";
+      break;
+    case 5:
+      m = "พฤษภาคม";
+      break;
+    case 6:
+      m = "มิถุนายน";
       break;
     case 7:
       m = "กรกฎาคม";
       break;
     case 8:
       m = "สิงหาคม";
+      break;
+    case 9:
+      m = "กันยายน";
+      break;
+    case 10:
+      m = "ตุลาคม";
+      break;
+    case 11:
+      m = "พฤศจิกายน";
+      break;
+    case 12:
+      m = "ธันวาคม";
       break;
     default:
       break;
@@ -92,16 +116,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   void initState() {
     super.initState();
-    // *! Initial value
-    // *? วันสุดท้ายของเดือน
-    lastDayCurrentMonth = daysInMonth(DateTime.now());
-    // *?
-    var lastDayOfLastMonth =
-        DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
-    lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
-    // *? จำนวน วันทั้งหมดใน เดือน
-    d = (lastDayOfLastMonths +
-        List.generate(lastDayCurrentMonth, (index) => index + 1));
+
+    setState(() {
+      // *! Initial value
+      // *? วันสุดท้ายของเดือน
+      lastDayCurrentMonth = daysInMonth(DateTime.now());
+      // *?
+      var lastDayOfLastMonth =
+          DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
+      lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
+      // *? จำนวน วันทั้งหมดใน เดือน
+      d = (lastDayOfLastMonths +
+          List.generate(lastDayCurrentMonth, (index) => index + 1));
+      // now = DateTime(now.year, now.month - 2312, 0);
+    });
   }
 
   @override
@@ -126,7 +154,20 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Column(
                     children: [
                       // ***** Month : March and Year
-                      ChangeMonthSection(now: now),
+                      ChangeMonthSection(
+                        now: now,
+                        getPreviousMonth: (value) {
+                          setState(() {
+                            now = value;
+                            debugPrint('162 : $now');
+                          });
+                        },
+                        getAfterMonth: (value) {
+                          setState(() {
+                            now = value;
+                          });
+                        },
+                      ),
                       // ***** Week:  Sun Sat Fri THU WED TUE MON
                       Expanded(
                         child: WeekSection(date: week),
@@ -137,11 +178,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         child: Column(
                           children: [
                             DaysSection(
-                                d: d,
-                                now: now,
-                                dayOfLastMonth: lastDayOfLastMonths.length,
-                                updateNow: (value) =>
-                                    setState(() => now = value)),
+                              d: d,
+                              now: now,
+                              dayOfLastMonth: lastDayOfLastMonths.length,
+                              updateNow: (value) {
+                                setState(() {
+                                  now = value;
+                                });
+                              },
+                            ),
                             // ***** Footer
                             const FooterSection(),
                           ],
