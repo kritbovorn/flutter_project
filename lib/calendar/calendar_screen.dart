@@ -116,7 +116,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   void initState() {
     super.initState();
+    updateState();
+  }
 
+  void updateState() {
     setState(() {
       // *! Initial value
       // *? วันสุดท้ายของเดือน
