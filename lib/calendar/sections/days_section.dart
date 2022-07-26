@@ -6,11 +6,13 @@ import 'package:flutter_project/calendar/calendar_screen.dart';
 class DaysSection extends StatefulWidget {
   final List<int> d;
   final int date;
+  final int dayOfLastMonth;
   final Function(int) getdate;
   const DaysSection({
     Key? key,
     required this.d,
     required this.date,
+    required this.dayOfLastMonth,
     required this.getdate,
   }) : super(key: key);
 
@@ -20,6 +22,7 @@ class DaysSection extends StatefulWidget {
 
 class _DaysSectionState extends State<DaysSection> {
   late int selectedDateIndex;
+  bool isNull = false;
 
   @override
   void initState() {
@@ -39,6 +42,15 @@ class _DaysSectionState extends State<DaysSection> {
     return colorSelect;
   }
 
+  String getIndexToString(int index) {
+    String result = '';
+    if (index == 0) {
+      result = "";
+      return result;
+    }
+    return index.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -46,7 +58,7 @@ class _DaysSectionState extends State<DaysSection> {
       child: SizedBox(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            double main = (constraints.maxHeight / 5);
+            double main = (constraints.maxHeight / 6);
             double pw = (constraints.maxWidth * 0.03);
             return GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: pw),
@@ -59,21 +71,28 @@ class _DaysSectionState extends State<DaysSection> {
               ),
               itemCount: widget.d.length,
               itemBuilder: (BuildContext context, int index) {
-                var i = index + 1;
+                int i = index + 1 - widget.dayOfLastMonth;
+                if (i < 1) {
+                  i = 0;
+                  isNull = true;
+                } else {
+                  isNull = false;
+                }
                 return TextButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedDateIndex = i;
-                      // debugPrint(selectedDateIndex.toString());
-                    });
-                    widget.getdate(selectedDateIndex);
-                  },
+                  onPressed: isNull
+                      ? null
+                      : () {
+                          setState(() {
+                            selectedDateIndex = i;
+                          });
+                        },
                   style: TextButton.styleFrom(
+                    onSurface: Colors.transparent,
                     backgroundColor: backgroundSelected(i),
                     shape: const CircleBorder(),
                   ),
                   child: Text(
-                    i.toString(),
+                    getIndexToString(i),
                     style: TextStyle(
                       color: colorSelected(i),
                       fontSize: 14,

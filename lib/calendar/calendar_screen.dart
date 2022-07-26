@@ -21,12 +21,13 @@ class CalendarScreen extends StatefulWidget {
 
 class _CalendarScreenState extends State<CalendarScreen> {
   DateTime now = DateTime.now();
-  late int lastDayOfMonth;
+  late int lastDayCurrentMonth;
   late int date;
   late String day;
   late String month;
   late int year;
   late List<int> d;
+  late List<int> lastDayOfLastMonths;
 
   List<String> week = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
 
@@ -35,9 +36,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
     super.initState();
     // *! Initial value
     // *? วันสุดท้ายของเดือน
-    lastDayOfMonth = daysInMonth(DateTime.now());
+    lastDayCurrentMonth = daysInMonth(DateTime.now());
+    // *?
+    var lastDayOfLastMonth = DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
+    lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
     // *? จำนวน วันทั้งหมดใน เดือน
-    d = List.generate(lastDayOfMonth, (index) => index + 1);
+    d = (lastDayOfLastMonths + List.generate(lastDayCurrentMonth, (index) => index + 1));
     // *? วันปัจจุบัน
     date = now.day;
     // *? วันในสัปดาห์
@@ -144,6 +148,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             DaysSection(
                                 d: d,
                                 date: date,
+                                dayOfLastMonth: lastDayOfLastMonths.length,
                                 getdate: (value) =>
                                     setState(() => date = value)),
                             // ***** Footer
