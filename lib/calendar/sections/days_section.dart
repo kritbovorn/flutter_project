@@ -5,15 +5,15 @@ import 'package:flutter_project/calendar/calendar_screen.dart';
 
 class DaysSection extends StatefulWidget {
   final List<int> d;
-  final int date;
+  final DateTime now;
   final int dayOfLastMonth;
-  final Function(int) getdate;
+  final Function(DateTime) updateNow;
   const DaysSection({
     Key? key,
     required this.d,
-    required this.date,
+    required this.now,
     required this.dayOfLastMonth,
-    required this.getdate,
+    required this.updateNow,
   }) : super(key: key);
 
   @override
@@ -21,13 +21,17 @@ class DaysSection extends StatefulWidget {
 }
 
 class _DaysSectionState extends State<DaysSection> {
+  // *? ประกาศ selectedDateIndex  
   late int selectedDateIndex;
+  // *   BBB ถ้าค่า  isNull  เป็นจริง  ปุ่มจะคลิกไม่ได้
   bool isNull = false;
+  // *!   AAAAA   ประกาศ updateDateTime ขึ้นมารับค่า DateTime ใหม่ ที่เลือก
+  DateTime updateDateTime = DateTime.now();
 
   @override
   void initState() {
     super.initState();
-    selectedDateIndex = widget.date;
+    selectedDateIndex = widget.now.day;
   }
 
   Color backgroundSelected(int index) {
@@ -82,10 +86,17 @@ class _DaysSectionState extends State<DaysSection> {
                   onPressed: isNull
                       ? null
                       : () {
+                          DateTime newDateTime = DateTime.now();
                           setState(() {
                             selectedDateIndex = i;
-                            
+                            // *!  AAAAA   มารับค่า ที่นี่
+                            updateDateTime = DateTime.utc(
+                              newDateTime.year,
+                              newDateTime.month,
+                              i,
+                            );
                           });
+                          widget.updateNow(updateDateTime);
                         },
                   style: TextButton.styleFrom(
                     onSurface: Colors.transparent,

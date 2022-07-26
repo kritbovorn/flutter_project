@@ -95,10 +95,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           children: [
                             DaysSection(
                                 d: d,
-                                date: date,
+                                now: now,
                                 dayOfLastMonth: lastDayOfLastMonths.length,
-                                getdate: (value) =>
-                                    setState(() => date = value)),
+                                updateNow: (value) =>
+                                    setState(() => now = value)),
                             // ***** Footer
                             const FooterSection(),
                           ],
