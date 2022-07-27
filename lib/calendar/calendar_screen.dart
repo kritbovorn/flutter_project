@@ -22,6 +22,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   List<String> week = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
 
+  bool isShowDialogYear = false;
+
   @override
   void initState() {
     super.initState();
@@ -30,7 +32,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   void updateState() {
     setState(() {
-      
       // *? วันสุดท้ายของเดือน
       lastDayCurrentMonth = daysInMonth(DateTime.now());
       debugPrint('127 $lastDayCurrentMonth');
@@ -88,6 +89,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         setState(() {
                           now = value;
                           updateAllDays(now);
+                        });
+                      },
+                      isOpenYear: (isOpen) {
+                        setState(() {
+                          isShowDialogYear = isOpen;
+                          debugPrint('97777 $isShowDialogYear');
                         });
                       },
                     ),

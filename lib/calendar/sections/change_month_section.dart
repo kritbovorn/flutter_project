@@ -8,11 +8,13 @@ class ChangeMonthSection extends StatefulWidget {
   final DateTime now;
   final Function(DateTime) getPreviousMonth;
   final Function(DateTime) getAfterMonth;
+  final Function(bool) isOpenYear;
   const ChangeMonthSection({
     Key? key,
     required this.now,
     required this.getPreviousMonth,
     required this.getAfterMonth,
+    required this.isOpenYear,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class ChangeMonthSection extends StatefulWidget {
 }
 
 class _ChangeMonthSectionState extends State<ChangeMonthSection> {
+  bool isOpen = false;
   @override
   Widget build(BuildContext context) {
     DateTime previousMonth = widget.now;
@@ -47,22 +50,28 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                     icon: const Icon(Icons.arrow_back_ios),
                     iconSize: 17,
                   ),
-                  Row(
-                    children: [
-                      CalendarText(
-                        title: getMonth(widget.now.month),
-                        fontColor: Colors.black,
-                        fontSize: 17,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      CalendarText(
-                        title: (widget.now.year + 543).toString(),
-                        fontColor: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      isOpen = !isOpen;
+                      widget.isOpenYear(isOpen);
+                    },
+                    child: Row(
+                      children: [
+                        CalendarText(
+                          title: getMonth(widget.now.month),
+                          fontColor: Colors.black,
+                          fontSize: 17,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        CalendarText(
+                          title: (widget.now.year + 543).toString(),
+                          fontColor: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ],
+                    ),
                   ),
                   IconButton(
                     onPressed: () {
