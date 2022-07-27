@@ -5,6 +5,7 @@ import 'package:flutter_project/calendar/sections/change_month_section.dart';
 import 'package:flutter_project/calendar/sections/days_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
+import 'package:flutter_project/calendar/widgets/year_widget.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -99,29 +100,43 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       },
                     ),
                     // ***** Week:  Sun Sat Fri THU WED TUE MON
-                    Expanded(
-                      child: WeekSection(date: week),
-                    ),
-                    // ***** Day: 1, 2, 3, 4, ...
-                    Expanded(
-                      flex: 8,
-                      child: Column(
-                        children: [
-                          DaysSection(
-                            d: d,
-                            now: now,
-                            dayOfLastMonth: lastDayOfLastMonths.length,
-                            lastDayCurrentMonth: lastDayCurrentMonth,
-                            updateNow: (value) {
-                              setState(() {
-                                now = value;
-                              });
-                            },
+                    isShowDialogYear
+                        ? const Expanded(
+                            flex: 9,
+                            child: YearWidget(),
+                          )
+                        : Expanded(
+                            flex: 9,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: WeekSection(date: week),
+                                ),
+                                Expanded(
+                                  flex: 8,
+                                  child: Column(
+                                    children: [
+                                      // ***** Day: 1, 2, 3, 4, ...
+                                      DaysSection(
+                                        d: d,
+                                        now: now,
+                                        dayOfLastMonth:
+                                            lastDayOfLastMonths.length,
+                                        lastDayCurrentMonth:
+                                            lastDayCurrentMonth,
+                                        updateNow: (value) {
+                                          setState(() {
+                                            now = value;
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          // ***** Footer
-                        ],
-                      ),
-                    ),
+                    // ***** Footer
                     const Expanded(
                       flex: 2,
                       child: FooterSection(),

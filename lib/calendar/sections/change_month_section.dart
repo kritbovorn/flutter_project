@@ -70,6 +70,11 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                           fontColor: Colors.black,
                           fontSize: 16,
                         ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(Icons.keyboard_arrow_down,
+                            color: cancelButtonColor),
                       ],
                     ),
                   ),
