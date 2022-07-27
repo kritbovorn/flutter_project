@@ -6,8 +6,6 @@ import 'package:flutter_project/calendar/sections/days_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
-
-
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
 
@@ -19,9 +17,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
   DateTime now = DateTime.now();
   late int lastDayCurrentMonth;
   late int date;
-  // late String day;
-  // late String month;
-  // late int year;
   late List<int> d;
   late List<int> lastDayOfLastMonths;
 
@@ -35,18 +30,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   void updateState() {
     setState(() {
-      // *! Initial value
+      
       // *? วันสุดท้ายของเดือน
       lastDayCurrentMonth = daysInMonth(DateTime.now());
       debugPrint('127 $lastDayCurrentMonth');
-      // *?
+
       var lastDayOfLastMonth =
           DateTime.utc(DateTime.now().year, DateTime.now().month, 1).weekday;
       lastDayOfLastMonths = List.generate(lastDayOfLastMonth, (index) => index);
+
       // *? จำนวน วันทั้งหมดใน เดือน
       d = (lastDayOfLastMonths +
           List.generate(lastDayCurrentMonth, (index) => index + 1));
-      // now = DateTime(now.year, now.month - 2312, 0);
     });
   }
 
@@ -77,53 +72,54 @@ class _CalendarScreenState extends State<CalendarScreen> {
               ),
               Expanded(
                 flex: 9,
-                child: SizedBox(
-                  child: Column(
-                    children: [
-                      // ***** Month : March and Year
-                      ChangeMonthSection(
-                        now: now,
-                        getPreviousMonth: (value) {
-                          setState(() {
-                            now = value;
-                            debugPrint('162 : $now');
-                            updateAllDays(now);
-                          });
-                        },
-                        getAfterMonth: (value) {
-                          setState(() {
-                            now = value;
-                            updateAllDays(now);
-                          });
-                        },
+                child: Column(
+                  children: [
+                    // ***** Month : March and Year
+                    ChangeMonthSection(
+                      now: now,
+                      getPreviousMonth: (value) {
+                        setState(() {
+                          now = value;
+                          debugPrint('162 : $now');
+                          updateAllDays(now);
+                        });
+                      },
+                      getAfterMonth: (value) {
+                        setState(() {
+                          now = value;
+                          updateAllDays(now);
+                        });
+                      },
+                    ),
+                    // ***** Week:  Sun Sat Fri THU WED TUE MON
+                    Expanded(
+                      child: WeekSection(date: week),
+                    ),
+                    // ***** Day: 1, 2, 3, 4, ...
+                    Expanded(
+                      flex: 8,
+                      child: Column(
+                        children: [
+                          DaysSection(
+                            d: d,
+                            now: now,
+                            dayOfLastMonth: lastDayOfLastMonths.length,
+                            lastDayCurrentMonth: lastDayCurrentMonth,
+                            updateNow: (value) {
+                              setState(() {
+                                now = value;
+                              });
+                            },
+                          ),
+                          // ***** Footer
+                        ],
                       ),
-                      // ***** Week:  Sun Sat Fri THU WED TUE MON
-                      Expanded(
-                        child: WeekSection(date: week),
-                      ),
-                      // ***** Day: 1, 2, 3, 4, ...
-                      Expanded(
-                        flex: 8,
-                        child: Column(
-                          children: [
-                            DaysSection(
-                              d: d,
-                              now: now,
-                              dayOfLastMonth: lastDayOfLastMonths.length,
-                              lastDayCurrentMonth: lastDayCurrentMonth,
-                              updateNow: (value) {
-                                setState(() {
-                                  now = value;
-                                });
-                              },
-                            ),
-                            // ***** Footer
-                            const FooterSection(),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    const Expanded(
+                      flex: 2,
+                      child: FooterSection(),
+                    ),
+                  ],
                 ),
               ),
             ],

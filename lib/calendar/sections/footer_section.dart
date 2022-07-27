@@ -16,27 +16,21 @@ class FooterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: mainExpandFlex ?? 3,
-      child: Column(
-        children: [
-          // Expanded(
-          //   flex: firstChildFlex ?? 9,
-          //   child: const SizedBox.shrink(),
-          // ),
-          Expanded(
-            flex: secondChildFlex ?? 19,
-            child: Row(
-              children: const [
-                Expanded(
-                  child: SizedBox.shrink(),
-                ),
-                ActionWidget(),
-              ],
-            ),
+    return Column(
+      children: [
+       
+        Expanded(
+          flex: secondChildFlex ?? 19,
+          child: Row(
+            children: const [
+              Expanded(
+                child: SizedBox.shrink(),
+              ),
+              ActionWidget(),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
