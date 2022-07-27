@@ -1,98 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/models/models.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
 import 'package:flutter_project/calendar/sections/days_section.dart';
 import 'package:flutter_project/calendar/sections/footer_section.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
-const Color backgroundScreen = Color(0xFF6A6A6A);
-const Color dateColor = Color(0xFF595959);
-const Color cancelButtonColor = Colors.red;
-const Color weekColor = Color(0xFF9A9A9A);
-const Color dateSelectedColor = Colors.white;
-const Color dateSelectedBackgroundColor = Colors.red;
 
-// *! Method find last day
-int daysInMonth(DateTime date) => DateTimeRange(
-        start: DateTime(date.year, date.month, 1),
-        end: DateTime(date.year, date.month + 1))
-    .duration
-    .inDays;
-
-String getDay(int d) {
-  String day = '';
-  switch (d) {
-    case 1:
-      day = "จันทร์";
-      break;
-    case 2:
-      day = "อังคาร";
-      break;
-    case 3:
-      day = "พุธ";
-      break;
-    case 4:
-      day = "พฤหัสบดี";
-      break;
-    case 5:
-      day = "ศุกร์";
-      break;
-    case 6:
-      day = "เสาร์";
-      break;
-    case 7:
-      day = "อาทิตย์";
-      break;
-    default:
-      break;
-  }
-  return day;
-}
-
-String getMonth(int month) {
-  String m = '';
-  switch (month) {
-    case 1:
-      m = "มกราคม";
-      break;
-    case 2:
-      m = "กุมภาพันธ์";
-      break;
-    case 3:
-      m = "มีนาคม";
-      break;
-    case 4:
-      m = "เมษายน";
-      break;
-    case 5:
-      m = "พฤษภาคม";
-      break;
-    case 6:
-      m = "มิถุนายน";
-      break;
-    case 7:
-      m = "กรกฎาคม";
-      break;
-    case 8:
-      m = "สิงหาคม";
-      break;
-    case 9:
-      m = "กันยายน";
-      break;
-    case 10:
-      m = "ตุลาคม";
-      break;
-    case 11:
-      m = "พฤศจิกายน";
-      break;
-    case 12:
-      m = "ธันวาคม";
-      break;
-    default:
-      break;
-  }
-  return m;
-}
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({Key? key}) : super(key: key);
