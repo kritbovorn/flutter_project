@@ -11,48 +11,67 @@ class _YearWidgetState extends State<YearWidget> {
   late DateTime yearChoice;
   late List<int> yearLists;
 
+  late int yearBuddhism;
+
   @override
   void initState() {
     yearChoice = DateTime.now();
-    yearLists = List.generate(50, (index) => yearChoice.year + index);
-    debugPrint(yearLists.toString());
+    yearBuddhism = yearChoice.year + 543;
+    yearLists = List.generate(50, (index) => yearBuddhism + index);
+    // debugPrint(yearLists.toString());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 224, 221, 221),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Center',
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Expanded(
-              child: Container(
+    // return Scaffold(
+    // backgroundColor: const Color.fromARGB(255, 224, 221, 221),
+    // body:
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'เลือกปี พุทธศักราจ',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        ),
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              double h = constraints.maxHeight * 0.2;
+              double ph = constraints.maxWidth * 0.05;
+              debugPrint(h.toString());
+              return Container(
+                padding: EdgeInsets.symmetric(horizontal: ph),
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  padding: const EdgeInsets.all(0),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
+                    mainAxisSpacing: ph * 0.8,
+                    crossAxisSpacing: ph * 0.8,
+                    mainAxisExtent: h,
                   ),
                   itemCount: yearLists.length,
                   itemBuilder: (BuildContext context, int index) {
+                    String y = (yearBuddhism + index).toString();
+
                     return ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        debugPrint(y);
+                      },
                       child: Text(yearLists[index].toString()),
                     );
                   },
                 ),
-              ),
-            ),
-          ],
+              );
+            },
+          ),
         ),
-      ),
+      ],
     );
+    // );
   }
 }
 
