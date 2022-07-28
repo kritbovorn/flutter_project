@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_project/calendar/components/calendar_text.dart';
@@ -23,6 +25,13 @@ class ChangeMonthSection extends StatefulWidget {
 
 class _ChangeMonthSectionState extends State<ChangeMonthSection> {
   bool isOpen = false;
+
+  // *?  Method for Degrees
+  double rotateDegree(double degree) {
+    var angle = degree * pi / 180;
+    return angle;
+  }
+
   @override
   Widget build(BuildContext context) {
     DateTime previousMonth = widget.now;
@@ -56,6 +65,8 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                       widget.isOpenYear(isOpen);
                     },
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CalendarText(
                           title: getMonth(widget.now.month),
@@ -70,11 +81,14 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                           fontColor: Colors.black,
                           fontSize: 16,
                         ),
-                        const SizedBox(
-                          width: 5,
+                        Transform.rotate(
+                          angle: isOpen ? rotateDegree(180) : rotateDegree(0),
+                          child: const Icon(
+                            Icons.arrow_drop_down,
+                            color: cancelButtonColor,
+                            size: 38,
+                          ),
                         ),
-                        const Icon(Icons.keyboard_arrow_down,
-                            color: cancelButtonColor),
                       ],
                     ),
                   ),
