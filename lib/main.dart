@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/screens/home_screen.dart';
+import 'package:flutter_project/calendar.dart';
 import 'package:flutter_project/theme/google_theme.dart';
 
 void main() {
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: GoogleTheme.darkColorScheme,
           textTheme: GoogleTheme.darkTextTheme),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
+      home: const Calendar(),
     );
   }
 }
