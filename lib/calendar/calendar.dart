@@ -9,6 +9,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  late DateTime dateTime;
   late final DateTime currentDateTime;
   late DateTime now;
   late DateTime newNow;
@@ -35,9 +36,10 @@ class _CalendarState extends State<Calendar> {
 
   void updateState() {
     setState(() {
-      currentDateTime = DateTime.now();
-      now = DateTime.now();
-      newNow = DateTime.now();
+      dateTime = DateTime.now();
+      currentDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day);
+      now = DateTime(dateTime.year, dateTime.month, dateTime.day);
+      newNow = DateTime(dateTime.year, dateTime.month, dateTime.day);
       year = now.year;
       month = now.month;
       day = now.day;
@@ -106,6 +108,7 @@ class _CalendarState extends State<Calendar> {
                 Expanded(
                   flex: 19,
                   child: MainScreen(
+                    currentDateTime: currentDateTime,
                     now: now,
                     allDaysInMonth: allDaysInMonth,
                     allDays: allDays,

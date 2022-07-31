@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
+  final DateTime currentDateTime;
   final DateTime now;
   final List<int> allDays;
   final List<int> allDaysInMonth;
   final int lastDateOfLastMonthInWeek;
   const MainScreen({
     Key? key,
+    required this.currentDateTime,
     required this.now,
     required this.allDays,
     required this.allDaysInMonth,
@@ -19,15 +21,45 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late DateTime updateDateTime;
   bool isNull = false;
+  bool isSelect = true;
   late int selectedDateIndex;
+  late final int current;
 
   @override
   void initState() {
     super.initState();
-    updateDateTime = DateTime.now();
+    current = widget.now.day;
     selectedDateIndex = widget.now.day;
+  }
+
+  // *?  สีของ Border
+  Color getBorderCircleCurrentTime(int index) {
+    if (widget.currentDateTime.day == current &&
+        selectedDateIndex == index &&
+        isSelect == true) {
+      debugPrint('MainScreen : Line #41 ::: Current : $current');
+      return Colors.red;
+    } else {
+      return Colors.transparent;
+      // return Colors.black;
+    }
+  }
+
+  Color backgroundSelected(int index) {
+    Color backgroundSelect =
+        selectedDateIndex == index ? Colors.red : Colors.transparent;
+    if (widget.currentDateTime.month != widget.now.month) {
+      backgroundSelect = Colors.black;
+    }
+    return backgroundSelect;
+  }
+
+  Color colorSelected(int index) {
+    Color colorSelect = selectedDateIndex == index
+        ? Colors.white
+        : const Color.fromARGB(255, 119, 99, 174);
+    return colorSelect;
   }
 
   // *?  Method  หาค่า String  ที่พิมพ์ใน  ปุ่ม Button
@@ -82,17 +114,33 @@ class _MainScreenState extends State<MainScreen> {
                   } else {
                     isNull = false;
                   }
+                  if (current == i) {
+                    isSelect = true;
+                  } else {
+                    isSelect = false;
+                  }
 
                   return TextButton(
                     onPressed: isNull
                         ? null
                         : () {
                             setState(() {
+                              isSelect = false;
                               selectedDateIndex = i;
                             });
                           },
+                    style: TextButton.styleFrom(
+                        backgroundColor: backgroundSelected(i),
+                        shape: CircleBorder(
+                          side: BorderSide(
+                              color: isSelect ? Colors.red : Colors.transparent,
+                              width: 2),
+                        )),
                     child: Text(
                       getIndexToString(i),
+                      style: TextStyle(
+                        color: colorSelected(i),
+                      ),
                     ),
                   );
                 },
