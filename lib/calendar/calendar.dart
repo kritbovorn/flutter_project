@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/calendar/main_screen/main_screen.dart';
+import 'package:flutter_project/calendar/main_screen/calendar_screen.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
 
@@ -11,7 +11,6 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  late DateTime dateTime;
   late final DateTime currentDateTime;
   late DateTime now;
   // late DateTime newNow;
@@ -34,15 +33,20 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     super.initState();
-    updateState();
+    currentDateTime =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    now =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    updateState(now);
   }
 
-  void updateState() {
+  void updateState(DateTime now) {
     setState(() {
-      dateTime = DateTime.now();
-      currentDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day);
+      debugPrint(
+          'Calendar : Line #45 :: --------------: CurrentDateTime: $currentDateTime');
+      debugPrint('Calendar : Line #46 ::: Now : $now');
       // *!  now   เป็นตัวแปร หลัก
-      now = DateTime(dateTime.year, dateTime.month, dateTime.day);
+
       // newNow = DateTime(dateTime.year, dateTime.month, dateTime.day);
       year = now.year;
       month = now.month;
@@ -110,11 +114,23 @@ class _CalendarState extends State<Calendar> {
                   // *!       Change Month Section
                   child: ChangeMonthSection(
                     now: now,
+                    getPreviousMonth: (value) {
+                      setState(() {
+                        now = value;
+                        updateState(now);
+                      });
+                    },
+                    getNextMonth: (value) {
+                      setState(() {
+                        now = value;
+                        updateState(now);
+                      });
+                    },
                   ),
                 ),
                 Expanded(
                   flex: 19,
-                  // *!       Main Calendar
+                  // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
                   child: MainScreen(
                     currentDateTime: currentDateTime,
                     now: now,

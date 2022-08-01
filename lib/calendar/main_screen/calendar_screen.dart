@@ -36,6 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     current = widget.now.day;
+    debugPrint('MainScreen : Line #39 ::: current ::: $current');
     selectedDateIndex = widget.now.day;
     newNow =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
@@ -103,11 +104,23 @@ class _MainScreenState extends State<MainScreen> {
                   } else {
                     isNull = false;
                   }
-                  if (current == i) {
-                    isSelect = true;
+
+                  if (widget.currentDateTime.year == widget.now.year &&
+                      widget.currentDateTime.month == widget.now.month) {
+                    if (current == i) {
+                      isSelect = true;
+                    } else {
+                      isSelect = false;
+                    }
                   } else {
+                    // selectedDateIndex = 32;
                     isSelect = false;
                   }
+
+                  debugPrint(
+                      'MainScreen : Line #107 ::: currentDateTime:: ${widget.currentDateTime}');
+                  debugPrint(
+                      'MainScreen : Line #108 ::: widget.now :: ${widget.now}');
 
                   return TextButton(
                     onPressed: isNull
@@ -118,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
                               selectedDateIndex = i;
 
                               newNow = DateTime(
-                                  DateTime.now().year, DateTime.now().month, i);
+                                  widget.now.year, widget.now.month, i);
                               widget.getNewNow(newNow);
                             });
                           },

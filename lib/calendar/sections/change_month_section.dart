@@ -5,9 +5,13 @@ import 'package:flutter_project/calendar/constants/constant.dart';
 
 class ChangeMonthSection extends StatefulWidget {
   final DateTime now;
+  final Function(DateTime) getPreviousMonth;
+  final Function(DateTime) getNextMonth;
   const ChangeMonthSection({
     Key? key,
     required this.now,
+    required this.getPreviousMonth,
+    required this.getNextMonth,
   }) : super(key: key);
 
   @override
@@ -15,6 +19,20 @@ class ChangeMonthSection extends StatefulWidget {
 }
 
 class _ChangeMonthSectionState extends State<ChangeMonthSection> {
+  late DateTime previousMonth;
+  late DateTime nextMonth;
+
+  @override
+  void initState() {
+    super.initState();
+    updateState();
+  }
+
+  updateState() {
+    previousMonth = widget.now;
+    nextMonth = widget.now;
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -26,7 +44,13 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    previousMonth = DateTime(
+                        widget.now.year, widget.now.month - 1, widget.now.day);
+                    widget.getPreviousMonth(previousMonth);
+                  });
+                },
                 icon: const Icon(Icons.arrow_back_ios_new),
                 iconSize: 18,
               ),
@@ -56,7 +80,13 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    nextMonth = DateTime(
+                        widget.now.year, widget.now.month + 1, widget.now.day);
+                    widget.getNextMonth(nextMonth);
+                  });
+                },
                 icon: const Icon(Icons.arrow_forward_ios),
                 iconSize: 18,
               ),
