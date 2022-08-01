@@ -18,6 +18,7 @@ class _CalendarState extends State<Calendar> {
   late int month;
   late int day;
   late DateTime thisMonth;
+  late DateTime lastMonth;
   late DateTime previousMonth;
   late DateTime nextMonth;
   late int lastDayOfLastMonth;
@@ -44,7 +45,8 @@ class _CalendarState extends State<Calendar> {
       month = now.month;
       day = now.day;
 
-      thisMonth = DateTime(year, month, 0);
+      thisMonth = DateTime(year, month, 1);
+      lastMonth = DateTime(year, month, 0);
 
       previousMonth = DateTime(year, month - 1, 0);
       nextMonth = DateTime(year, month + 1, 0);
@@ -52,28 +54,28 @@ class _CalendarState extends State<Calendar> {
       // *?  วันสุดท้าย ของเดือนนี้
       lastDayOfMonth = nextMonth.day;
       debugPrint(
-          'Calendar : Line #53 :: วันสุดท้าย ของเดือนนี้ : $lastDayOfMonth');
+          'Calendar : Line #57 :: วันสุดท้าย ของเดือนนี้ : $lastDayOfMonth');
 
       // *?  วันสุดท้าย ของเดือนก่อน
-      lastDayOfLastMonth = thisMonth.day;
+      lastDayOfLastMonth = lastMonth.day; /////
       debugPrint(
-          'Calendar : Line #58 :: วันสุดท้าย ของเดือนก่อน : $lastDayOfLastMonth');
+          'Calendar : Line #62 :: วันสุดท้าย ของเดือนก่อน : $lastDayOfLastMonth');
 
-      // *? ************* ลำดับต่อไป ที่จะให้วันที่ 1 พิมพ์ออกมา  (  บวก 1. เพราะ  มีวันอาทิตย์ มา เริ่มก่อน  1 ตำแหน่ง)
-      lastDateOfLastMonthInWeek = thisMonth.weekday + 1;
+      // *? ************* ลำดับต่อไป ที่จะให้วันที่ 1 พิมพ์ออกมา  
+      lastDateOfLastMonthInWeek = thisMonth.weekday;
       debugPrint(
-          'Calendar : Line #63 ::: ลำดับ ที่จะเริ่ม แสดงผล ในตาราง $lastDateOfLastMonthInWeek');
+          'Calendar : Line #67 ::: ลำดับ ที่จะเริ่ม แสดงผล ในตาราง $lastDateOfLastMonthInWeek');
 
       // *? จำนวนวันทั้งหมด ในเดือน
       allDaysInMonth = List.generate(lastDayOfMonth, (index) => index + 1);
       debugPrint(
-          'Calendar : Line #68 ::: จำนวนวันทั้งหมด ในเดือน $allDaysInMonth');
+          'Calendar : Line #72 ::: จำนวนวันทั้งหมด ในเดือน $allDaysInMonth');
 
       // *? จำนวน วันสุดท้ายทั้งหมด ของเดือนที่แล้ว  List
       daysOfLastMonthInWeek =
           List.generate(lastDateOfLastMonthInWeek, (index) => 0);
       debugPrint(
-          'Calendar : Line #74 ::: จำนวน วันสุดท้ายทั้งหมด ของเดือนที่แล้ว $daysOfLastMonthInWeek');
+          'Calendar : Line #78 ::: จำนวน วันสุดท้ายทั้งหมด ของเดือนที่แล้ว ในสัปดาห์ $daysOfLastMonthInWeek');
 
       // *? รวม จำนวน ทั้งหมด เพื่อที่ จะ พิมพ์ออกที่  UI
       allDays = allDaysInMonth + daysOfLastMonthInWeek;

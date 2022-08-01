@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/constants/constant.dart';
+import 'package:flutter_project/calendar/sections/week_section.dart';
 
 class MainScreen extends StatefulWidget {
   final DateTime currentDateTime;
@@ -33,19 +35,6 @@ class _MainScreenState extends State<MainScreen> {
     selectedDateIndex = widget.now.day;
   }
 
-  // *?  สีของ Border
-  Color getBorderCircleCurrentTime(int index) {
-    if (widget.currentDateTime.day == current &&
-        selectedDateIndex == index &&
-        isSelect == true) {
-      debugPrint('MainScreen : Line #41 ::: Current : $current');
-      return Colors.red;
-    } else {
-      return Colors.transparent;
-      // return Colors.black;
-    }
-  }
-
   Color backgroundSelected(int index) {
     Color backgroundSelect =
         selectedDateIndex == index ? Colors.red : Colors.transparent;
@@ -56,9 +45,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Color colorSelected(int index) {
-    Color colorSelect = selectedDateIndex == index
-        ? Colors.white
-        : const Color.fromARGB(255, 119, 99, 174);
+    Color colorSelect =
+        selectedDateIndex == index ? Colors.white : Constant.primaryColor;
     return colorSelect;
   }
 
@@ -76,11 +64,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.green,
-          ),
+        const Expanded(
+          flex: 3,
+          child: WeekSection(),
         ),
         Expanded(
           flex: 18,
@@ -88,11 +74,11 @@ class _MainScreenState extends State<MainScreen> {
             builder: (context, constraints) {
               double w = constraints.maxWidth;
               double h = constraints.maxHeight;
-              double p = w * 0.01;
+              double padding = w * 0.03;
               return GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                padding: EdgeInsets.symmetric(horizontal: p, vertical: p),
+                padding: EdgeInsets.symmetric(horizontal: padding),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 7,
                   mainAxisExtent: (h.toInt() / 6),
@@ -139,6 +125,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: Text(
                       getIndexToString(i),
                       style: TextStyle(
+                        fontSize: 16,
                         color: colorSelected(i),
                       ),
                     ),
@@ -161,13 +148,25 @@ class _MainScreenState extends State<MainScreen> {
                     Expanded(
                       child: TextButton(
                         onPressed: () {},
-                        child: const Text('ยกเลิก'),
+                        child: Text(
+                          'ยกเลิก',
+                          style: TextStyle(
+                            color: Constant.mainColor,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
                     ),
                     Expanded(
                         child: TextButton(
                       onPressed: () {},
-                      child: const Text('ตกลง'),
+                      child: Text(
+                        'ตกลง',
+                        style: TextStyle(
+                          color: Constant.mainColor,
+                          fontSize: 18,
+                        ),
+                      ),
                     )),
                   ],
                 ),
