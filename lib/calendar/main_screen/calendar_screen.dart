@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/calendar/constants/constant.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
-class MainScreen extends StatefulWidget {
+class CalendarScreen extends StatefulWidget {
   final DateTime currentDateTime;
   final DateTime now;
   final List<int> allDays;
   final List<int> allDaysInMonth;
   final int lastDateOfLastMonthInWeek;
   final Function(DateTime) getNewNow;
-  const MainScreen({
+  const CalendarScreen({
     Key? key,
     required this.currentDateTime,
     required this.now,
@@ -22,10 +22,10 @@ class MainScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<CalendarScreen> createState() => _CalendarScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _CalendarScreenState extends State<CalendarScreen> {
   bool isNull = false;
   bool isSelect = true;
   late int selectedDateIndex;
@@ -167,7 +167,9 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          Navigator.pop(context, widget.currentDateTime);
+                        },
                         child: Text(
                           'ยกเลิก',
                           style: TextStyle(
@@ -179,7 +181,9 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     Expanded(
                         child: TextButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        Navigator.pop(context, widget.now);
+                      },
                       child: Text(
                         'ตกลง',
                         style: TextStyle(

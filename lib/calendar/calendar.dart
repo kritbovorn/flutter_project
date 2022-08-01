@@ -131,7 +131,7 @@ class _CalendarState extends State<Calendar> {
                 Expanded(
                   flex: 19,
                   // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
-                  child: MainScreen(
+                  child: CalendarScreen(
                     currentDateTime: currentDateTime,
                     now: now,
                     allDaysInMonth: allDaysInMonth,
