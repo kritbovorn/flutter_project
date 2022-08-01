@@ -36,7 +36,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   void initState() {
     super.initState();
     current = widget.now.day;
-    debugPrint('MainScreen : Line #39 ::: current ::: $current');
+    // debugPrint('MainScreen : Line #39 ::: current ::: $current');
     selectedDateIndex = widget.now.day;
     newNow =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
@@ -116,11 +116,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     // selectedDateIndex = 32;
                     isSelect = false;
                   }
-
-                  debugPrint(
-                      'MainScreen : Line #107 ::: currentDateTime:: ${widget.currentDateTime}');
-                  debugPrint(
-                      'MainScreen : Line #108 ::: widget.now :: ${widget.now}');
 
                   return TextButton(
                     onPressed: isNull

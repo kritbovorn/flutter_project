@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_project/calendar/main_screen/calendar_screen.dart';
+import 'package:flutter_project/calendar/main_screen/year_screen.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
 
@@ -35,6 +36,8 @@ class _CalendarState extends State<Calendar> {
   late List<int> allDaysInMonth;
   late List<int> daysOfLastMonthInWeek;
   late List<int> allDays;
+
+  bool isShowYearScreen = false;
 
   @override
   void initState() {
@@ -134,25 +137,36 @@ class _CalendarState extends State<Calendar> {
                           updateState(now);
                         });
                       },
-                    ),
-                  ),
-                  Expanded(
-                    flex: 19,
-                    // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
-                    child: CalendarScreen(
-                      currentDateTime: currentDateTime,
-                      now: now,
-                      allDaysInMonth: allDaysInMonth,
-                      allDays: allDays,
-                      lastDateOfLastMonthInWeek: lastDateOfLastMonthInWeek,
-                      getNewNow: (value) {
+                      displayYearScreen: (value) {
                         setState(() {
-                          now = value;
+                          isShowYearScreen = value;
                         });
                       },
                     ),
-                    // child: Container(),
                   ),
+                  isShowYearScreen
+                      ? const Expanded(
+                          flex: 19,
+                          child: YearScreen(),
+                        )
+                      : Expanded(
+                          flex: 19,
+                          // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
+                          child: CalendarScreen(
+                            currentDateTime: currentDateTime,
+                            now: now,
+                            allDaysInMonth: allDaysInMonth,
+                            allDays: allDays,
+                            lastDateOfLastMonthInWeek:
+                                lastDateOfLastMonthInWeek,
+                            getNewNow: (value) {
+                              setState(() {
+                                now = value;
+                              });
+                            },
+                          ),
+                          // child: Container(),
+                        ),
                 ],
               );
             },

@@ -9,11 +9,13 @@ class ChangeMonthSection extends StatefulWidget {
   final DateTime now;
   final Function(DateTime) getPreviousMonth;
   final Function(DateTime) getNextMonth;
+  final Function(bool) displayYearScreen;
   const ChangeMonthSection({
     Key? key,
     required this.now,
     required this.getPreviousMonth,
     required this.getNextMonth,
+    required this.displayYearScreen,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
   late DateTime previousMonth;
   late DateTime nextMonth;
 
+  bool isShowYearScreen = false;
   @override
   void initState() {
     super.initState();
@@ -61,38 +64,50 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                 icon: const Icon(Icons.arrow_back_ios_new),
                 iconSize: 18,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    getMonth(widget.now.month),
-                    style: TextStyle(
-                      color: Constant.primaryColor,
-                      fontSize: 18,
-                      height: 1.8,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isShowYearScreen = !isShowYearScreen;
+                    widget.displayYearScreen(isShowYearScreen);
+                    debugPrint(
+                        'ChangeMonthSection : Line #71 ::: $isShowYearScreen');
+                  });
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      getMonth(widget.now.month),
+                      style: TextStyle(
+                        color: Constant.primaryColor,
+                        fontSize: 18,
+                        height: 1.8,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: padding,
-                  ),
-                  Text(
-                    '${(widget.now.year + 543)}',
-                    style: TextStyle(
-                      color: Constant.primaryColor,
-                      fontSize: 18,
-                      height: 2.8,
+                    SizedBox(
+                      width: padding,
                     ),
-                  ),
-                  Transform.rotate(
-                    angle: rotateDegree(0),
-                    child: Icon(
-                      Icons.arrow_drop_down,
-                      color: Constant.mainColor,
-                      size: 38,
+                    Text(
+                      '${(widget.now.year + 543)}',
+                      style: TextStyle(
+                        color: Constant.primaryColor,
+                        fontSize: 18,
+                        height: 2.8,
+                      ),
                     ),
-                  ),
-                ],
+                    Transform.rotate(
+                      angle: isShowYearScreen
+                          ? rotateDegree(180)
+                          : rotateDegree(0),
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        color: Constant.mainColor,
+                        size: 38,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               IconButton(
                 onPressed: () {
