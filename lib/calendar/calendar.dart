@@ -145,9 +145,17 @@ class _CalendarState extends State<Calendar> {
                     ),
                   ),
                   isShowYearScreen
-                      ? const Expanded(
+                      ? Expanded(
                           flex: 19,
-                          child: YearScreen(),
+                          child: YearScreen(
+                            now: now,
+                            sendNewYear: (y, isShow) {
+                              setState(() {
+                                now = DateTime(y - 543, now.month, now.day);
+                                isShowYearScreen = isShow;
+                              });
+                            },
+                          ),
                         )
                       : Expanded(
                           flex: 19,
