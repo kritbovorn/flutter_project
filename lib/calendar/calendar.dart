@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/calendar/main_screen/main_screen.dart';
+import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
+import 'package:flutter_project/calendar/sections/change_month_section.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -61,7 +63,7 @@ class _CalendarState extends State<Calendar> {
       debugPrint(
           'Calendar : Line #62 :: วันสุดท้าย ของเดือนก่อน : $lastDayOfLastMonth');
 
-      // *? ************* ลำดับต่อไป ที่จะให้วันที่ 1 พิมพ์ออกมา  
+      // *? ************* ลำดับต่อไป ที่จะให้วันที่ 1 พิมพ์ออกมา
       lastDateOfLastMonthInWeek = thisMonth.weekday;
       debugPrint(
           'Calendar : Line #67 ::: ลำดับ ที่จะเริ่ม แสดงผล ในตาราง $lastDateOfLastMonthInWeek');
@@ -97,18 +99,19 @@ class _CalendarState extends State<Calendar> {
               children: [
                 Expanded(
                   flex: 5,
-                  child: Container(
-                    color: Colors.green,
+                  // *!       Header Section
+                  child: CalendarHeaderSection(
+                    now: now,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 2,
-                  child: Container(
-                    color: const Color.fromARGB(255, 13, 148, 17),
-                  ),
+                  // *!       Change Month Section
+                  child: ChangeMonthSection(),
                 ),
                 Expanded(
                   flex: 19,
+                  // *!       Main Calendar
                   child: MainScreen(
                     currentDateTime: currentDateTime,
                     now: now,

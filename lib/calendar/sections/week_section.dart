@@ -11,7 +11,7 @@ class WeekSection extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          double padding = constraints.maxWidth * 0.03;
+          double padding = constraints.maxWidth * 0.02;
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: Row(

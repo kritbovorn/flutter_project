@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Color backgroundSelected(int index) {
     Color backgroundSelect =
-        selectedDateIndex == index ? Colors.red : Colors.transparent;
+        selectedDateIndex == index ? Constant.mainColor : Colors.transparent;
     if (widget.currentDateTime.month != widget.now.month) {
       backgroundSelect = Colors.black;
     }
