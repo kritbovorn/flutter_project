@@ -182,7 +182,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     Expanded(
                         child: TextButton(
                       onPressed: () async {
-                        Navigator.pop(context, widget.now);
+                        setState(() {
+                          Navigator.pop(context, widget.now);
+                        });
                       },
                       child: Text(
                         'ตกลง',

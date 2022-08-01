@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_project/calendar/main_screen/calendar_screen.dart';
 import 'package:flutter_project/calendar/sections/calendar_header_section.dart';
 import 'package:flutter_project/calendar/sections/change_month_section.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+  final DateTime receiveNow;
+  const Calendar({
+    Key? key,
+    required this.receiveNow,
+  }) : super(key: key);
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -35,8 +41,8 @@ class _CalendarState extends State<Calendar> {
     super.initState();
     currentDateTime =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-    now =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    // now = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    now = widget.receiveNow;
     updateState(now);
   }
 
@@ -93,61 +99,64 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    return Center(
-      child: Container(
-        color: Colors.white,
-        width: screenSize.width * 0.9,
-        height: screenSize.height * 0.7,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return Column(
-              children: [
-                Expanded(
-                  flex: 5,
-                  // *!       Header Section
-                  child: CalendarHeaderSection(
-                    now: now,
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 109, 109, 109),
+      body: Center(
+        child: Container(
+          color: Colors.white,
+          width: screenSize.width * 0.9,
+          height: screenSize.height * 0.7,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    // *!       Header Section
+                    child: CalendarHeaderSection(
+                      now: now,
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  // *!       Change Month Section
-                  child: ChangeMonthSection(
-                    now: now,
-                    getPreviousMonth: (value) {
-                      setState(() {
-                        now = value;
-                        updateState(now);
-                      });
-                    },
-                    getNextMonth: (value) {
-                      setState(() {
-                        now = value;
-                        updateState(now);
-                      });
-                    },
+                  Expanded(
+                    flex: 2,
+                    // *!       Change Month Section
+                    child: ChangeMonthSection(
+                      now: now,
+                      getPreviousMonth: (value) {
+                        setState(() {
+                          now = value;
+                          updateState(now);
+                        });
+                      },
+                      getNextMonth: (value) {
+                        setState(() {
+                          now = value;
+                          updateState(now);
+                        });
+                      },
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 19,
-                  // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
-                  child: CalendarScreen(
-                    currentDateTime: currentDateTime,
-                    now: now,
-                    allDaysInMonth: allDaysInMonth,
-                    allDays: allDays,
-                    lastDateOfLastMonthInWeek: lastDateOfLastMonthInWeek,
-                    getNewNow: (value) {
-                      setState(() {
-                        now = value;
-                      });
-                    },
+                  Expanded(
+                    flex: 19,
+                    // *!       Main Calendar    1, 2, 3, 4, 5 , 6........
+                    child: CalendarScreen(
+                      currentDateTime: currentDateTime,
+                      now: now,
+                      allDaysInMonth: allDaysInMonth,
+                      allDays: allDays,
+                      lastDateOfLastMonthInWeek: lastDateOfLastMonthInWeek,
+                      getNewNow: (value) {
+                        setState(() {
+                          now = value;
+                        });
+                      },
+                    ),
+                    // child: Container(),
                   ),
-                  // child: Container(),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

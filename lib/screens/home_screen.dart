@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/calendar/calendar.dart';
 import 'package:flutter_project/calendar/constants/constant.dart';
-import 'package:flutter_project/screens/display_calendar_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,12 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
-                Navigator.push(
+                now = await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DisplayCalendarScreen(),
+                    builder: (context) => Calendar(receiveNow: now),
                   ),
                 );
+                setState(() {});
               },
               style: ElevatedButton.styleFrom(
                 elevation: 10,
