@@ -14,7 +14,7 @@ class _CalendarState extends State<Calendar> {
   late DateTime dateTime;
   late final DateTime currentDateTime;
   late DateTime now;
-  late DateTime newNow;
+  // late DateTime newNow;
 
   late int year;
   late int month;
@@ -41,8 +41,9 @@ class _CalendarState extends State<Calendar> {
     setState(() {
       dateTime = DateTime.now();
       currentDateTime = DateTime(dateTime.year, dateTime.month, dateTime.day);
+      // *!  now   เป็นตัวแปร หลัก
       now = DateTime(dateTime.year, dateTime.month, dateTime.day);
-      newNow = DateTime(dateTime.year, dateTime.month, dateTime.day);
+      // newNow = DateTime(dateTime.year, dateTime.month, dateTime.day);
       year = now.year;
       month = now.month;
       day = now.day;
@@ -104,10 +105,12 @@ class _CalendarState extends State<Calendar> {
                     now: now,
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   flex: 2,
                   // *!       Change Month Section
-                  child: ChangeMonthSection(),
+                  child: ChangeMonthSection(
+                    now: now,
+                  ),
                 ),
                 Expanded(
                   flex: 19,
@@ -118,9 +121,14 @@ class _CalendarState extends State<Calendar> {
                     allDaysInMonth: allDaysInMonth,
                     allDays: allDays,
                     lastDateOfLastMonthInWeek: lastDateOfLastMonthInWeek,
+                    getNewNow: (value) {
+                      setState(() {
+                        now = value;
+                      });
+                    },
                   ),
                   // child: Container(),
-                )
+                ),
               ],
             );
           },

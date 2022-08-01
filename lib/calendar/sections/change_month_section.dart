@@ -1,8 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_project/calendar/constants/constant.dart';
 
 class ChangeMonthSection extends StatefulWidget {
-  const ChangeMonthSection({Key? key}) : super(key: key);
+  final DateTime now;
+  const ChangeMonthSection({
+    Key? key,
+    required this.now,
+  }) : super(key: key);
 
   @override
   State<ChangeMonthSection> createState() => _ChangeMonthSectionState();
@@ -29,7 +35,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'มกราคม',
+                    getMonth(widget.now.month),
                     style: TextStyle(
                       color: Constant.primaryColor,
                       fontSize: 18,
@@ -40,7 +46,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                     width: padding,
                   ),
                   Text(
-                    '2565',
+                    '${(widget.now.year + 543)}',
                     style: TextStyle(
                       color: Constant.primaryColor,
                       fontSize: 18,

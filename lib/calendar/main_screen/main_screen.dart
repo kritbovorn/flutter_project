@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_project/calendar/constants/constant.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
@@ -9,6 +10,7 @@ class MainScreen extends StatefulWidget {
   final List<int> allDays;
   final List<int> allDaysInMonth;
   final int lastDateOfLastMonthInWeek;
+  final Function(DateTime) getNewNow;
   const MainScreen({
     Key? key,
     required this.currentDateTime,
@@ -16,6 +18,7 @@ class MainScreen extends StatefulWidget {
     required this.allDays,
     required this.allDaysInMonth,
     required this.lastDateOfLastMonthInWeek,
+    required this.getNewNow,
   }) : super(key: key);
 
   @override
@@ -27,20 +30,20 @@ class _MainScreenState extends State<MainScreen> {
   bool isSelect = true;
   late int selectedDateIndex;
   late final int current;
+  late DateTime newNow;
 
   @override
   void initState() {
     super.initState();
     current = widget.now.day;
     selectedDateIndex = widget.now.day;
+    newNow =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   }
 
   Color backgroundSelected(int index) {
     Color backgroundSelect =
         selectedDateIndex == index ? Constant.mainColor : Colors.transparent;
-    if (widget.currentDateTime.month != widget.now.month) {
-      backgroundSelect = Colors.black;
-    }
     return backgroundSelect;
   }
 
@@ -113,6 +116,10 @@ class _MainScreenState extends State<MainScreen> {
                             setState(() {
                               isSelect = false;
                               selectedDateIndex = i;
+
+                              newNow = DateTime(
+                                  DateTime.now().year, DateTime.now().month, i);
+                              widget.getNewNow(newNow);
                             });
                           },
                     style: TextButton.styleFrom(
