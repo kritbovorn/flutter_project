@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_project/calendar/constants/constant.dart';
@@ -31,6 +33,11 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
   updateState() {
     previousMonth = widget.now;
     nextMonth = widget.now;
+  }
+
+  double rotateDegree(double degree) {
+    var angle = degree * pi / 180;
+    return angle;
   }
 
   @override
@@ -76,7 +83,15 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                       fontSize: 18,
                       height: 2.8,
                     ),
-                  )
+                  ),
+                  Transform.rotate(
+                    angle: rotateDegree(0),
+                    child: Icon(
+                      Icons.arrow_drop_down,
+                      color: Constant.mainColor,
+                      size: 38,
+                    ),
+                  ),
                 ],
               ),
               IconButton(
