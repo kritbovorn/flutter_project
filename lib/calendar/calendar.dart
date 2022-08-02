@@ -149,10 +149,16 @@ class _CalendarState extends State<Calendar> {
                           flex: 19,
                           child: YearScreen(
                             now: now,
-                            sendNewYear: (y, isShow) {
+                            sendNewYear: (y) {
                               setState(() {
                                 now = DateTime(y - 543, now.month, now.day);
-                                isShowYearScreen = isShow;
+                                // isShowYearScreen = isShow;
+                              });
+                            },
+                            displayYearScreen: (value) {
+                              setState(() {
+                                isShowYearScreen = value;
+                                updateState(now);
                               });
                             },
                           ),

@@ -5,11 +5,13 @@ import 'package:flutter_project/calendar/constants/constant.dart';
 
 class YearScreen extends StatefulWidget {
   final DateTime now;
-  final Function(int, bool) sendNewYear;
+  final Function(int) sendNewYear;
+  final Function(bool) displayYearScreen;
   const YearScreen({
     Key? key,
     required this.now,
     required this.sendNewYear,
+    required this.displayYearScreen,
   }) : super(key: key);
 
   @override
@@ -25,16 +27,24 @@ class _YearScreenState extends State<YearScreen> {
   late int selectedYearIndex;
   late bool isShowYearScreen;
 
+  // *?  เลือก ระยะ เริ่มต้น และท้ายสุด ของจำนวนปี
+  late int startYear;
+  late int endYear;
+
   @override
   void initState() {
     super.initState();
+
+    startYear = 2;
+    endYear = 5;
     // *!   ตำแหน่งแรก ของปี
     isShowYearScreen = false;
 
-    beforeYears = List.generate(15, (index) => DateTime.now().year - index)
-        .reversed
-        .toList();
-    afterYears = List.generate(15, (index) => DateTime.now().year + index)
+    beforeYears =
+        List.generate(startYear, (index) => DateTime.now().year - index)
+            .reversed
+            .toList();
+    afterYears = List.generate(endYear, (index) => DateTime.now().year + index)
       ..removeAt(0);
     yearLists = beforeYears + afterYears;
     debugPrint('YearScreen : Line #26 ::: $yearLists');
@@ -81,8 +91,10 @@ class _YearScreenState extends State<YearScreen> {
                   return ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        selectedYearIndex = index + 2021 + 543 - 13;
-                        widget.sendNewYear(selectedYearIndex, isShowYearScreen);
+                        selectedYearIndex =
+                            index + 2021 + 543 - (startYear - 2);
+
+                        widget.sendNewYear(selectedYearIndex);
                       });
                     },
                     style: ElevatedButton.styleFrom(
@@ -119,7 +131,11 @@ class _YearScreenState extends State<YearScreen> {
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          setState(() {
+                            isShowYearScreen = false;
+                          });
+                        },
                         child: Text(
                           'ยกเลิก',
                           style: TextStyle(
@@ -133,8 +149,11 @@ class _YearScreenState extends State<YearScreen> {
                         child: TextButton(
                       onPressed: () async {
                         setState(() {
-                          isShowYearScreen = true;
+                          isShowYearScreen = false;
+                          widget.displayYearScreen(isShowYearScreen);
                         });
+                        debugPrint(
+                            'YearScreen : Line #151 ::: $isShowYearScreen');
                       },
                       child: Text(
                         'ตกลง',
