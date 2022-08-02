@@ -40,11 +40,14 @@ class _YearScreenState extends State<YearScreen> {
     // *!   ค่า   DateTime   ตอนแรก เปลี่ยนค่าไม่ได้
     defaultNow = widget.now;
 
-    startYear = 2;
-    endYear = 5;
-    // *!   ตำแหน่งแรก ของปี
+    // *?                               ตัวแปร  ที่จะส่งค่าออกไป เป้นเท็จ  หรือ  จริง
     isShowYearScreen = false;
 
+    // *?                               ตำแหน่งแรก ของปี
+    startYear = 2;
+    endYear = 5;
+
+    // *?                               หาค่า จำนวนปี   เริ่มต้น   และ สิ้นสุด
     beforeYears =
         List.generate(startYear, (index) => DateTime.now().year - index)
             .reversed
@@ -53,7 +56,7 @@ class _YearScreenState extends State<YearScreen> {
       ..removeAt(0);
     yearLists = beforeYears + afterYears;
     debugPrint('YearScreen : Line #26 ::: $yearLists');
-    // *? Year
+    // *?                               Year   บวก ปี  พ.ศ.
     selectedYearIndex = widget.now.year;
     selectedYearIndex = selectedYearIndex + 543;
   }
@@ -80,7 +83,6 @@ class _YearScreenState extends State<YearScreen> {
             builder: (context, constraints) {
               double heigh = constraints.maxWidth * 0.15;
               return GridView.builder(
-                // padding: EdgeInsets.zero,
                 padding: EdgeInsets.symmetric(
                     horizontal: heigh / 2, vertical: heigh / 2),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -91,15 +93,17 @@ class _YearScreenState extends State<YearScreen> {
                 ),
                 itemCount: yearLists.length,
                 itemBuilder: (BuildContext context, int index) {
-                  // *!  หาตำแหน่ง ที่ คลิก   และ เริ่มต้น
-
+                  // ignore: todo
+                  // TODO:                            ปุ่ม เลือก   Year
                   return ElevatedButton(
                     onPressed: () {
                       setState(() {
+                        // *?                               กำหนด  ค่า ให้  กับ   selectedYearIndex
                         selectedYearIndex =
                             index + 2021 + 543 - (startYear - 2);
 
                         widget.sendNewYear(selectedYearIndex);
+                        // *?                                สำคัญ    ส่งค่า ปี ที่เลือก ออกไป
                       });
                     },
                     style: ElevatedButton.styleFrom(
@@ -124,6 +128,8 @@ class _YearScreenState extends State<YearScreen> {
             },
           ),
         ),
+        // ignore: todo
+        // TODO:                            ส่วน ปุ่ม ท้ายสุด   ยกเลิก   ตกลง
         Expanded(
           flex: 4,
           child: Row(
@@ -135,11 +141,15 @@ class _YearScreenState extends State<YearScreen> {
                 child: Row(
                   children: [
                     Expanded(
+                      // ignore: todo
+                      // TODO:                            ยกเลิก
                       child: TextButton(
                         onPressed: () async {
                           setState(() {
+                            // *?                               ส่งค่า ไป ปิด YearScreen()
                             isShowYearScreen = false;
                             widget.displayYearScreen(isShowYearScreen);
+                            // *?                               ส่งค่า   DateTime   ตอนแรก กลับไป
                             widget.sendDefaultNow(defaultNow);
                           });
                         },
@@ -153,9 +163,12 @@ class _YearScreenState extends State<YearScreen> {
                       ),
                     ),
                     Expanded(
+                        // ignore: todo
+                        // TODO:                            ตกลง
                         child: TextButton(
                       onPressed: () async {
                         setState(() {
+                          // *?                               ส่งค่า ไป ปิด YearScreen()
                           isShowYearScreen = false;
                           widget.displayYearScreen(isShowYearScreen);
                         });

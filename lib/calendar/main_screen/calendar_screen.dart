@@ -5,6 +5,7 @@ import 'package:flutter_project/calendar/constants/constant.dart';
 import 'package:flutter_project/calendar/sections/week_section.dart';
 
 class CalendarScreen extends StatefulWidget {
+  // *!                               รับ ค่า currentDateTime:  ซึ่ง   เป็นค่า DateTime    ตอนแรกสุด  เพือมาเปรียบเทียบ
   final DateTime currentDateTime;
   final DateTime now;
   final List<int> allDays;
@@ -37,9 +38,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
   void initState() {
     super.initState();
     defaultNow = DateTime.now();
+    // *!                               สำคัญ  สร้างเพื่อ ไม่ให้   current   เปลี่ยนค่า
     current = defaultNow.day;
-    debugPrint('MainScreen : Line #39 ::: current ::: $current');
     selectedDateIndex = widget.now.day;
+
+    // *!                               สำคัญ  เพือรับค่า  DateTime ใหม่  แล้วส่ง ออกไป
     newNow =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   }
@@ -89,6 +92,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   crossAxisCount: 7,
                   mainAxisExtent: (h.toInt() / 6),
                 ),
+                // *?                               เช็ค จำนวน   index
                 itemCount: widget.lastDateOfLastMonthInWeek == 7
                     ? widget.allDaysInMonth.length
                     : widget.allDays.length,
@@ -106,7 +110,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   } else {
                     isNull = false;
                   }
-
+                  // ignore: todo
+                  // TODO:                            สำคัญมาก   เช็คว่า  ค่า DateTime  เป็น ตอนแรกไหม   และ   index  ต้องเท่ากับ วันๆแรกด้วย
+                  // *?                               เพื่อไป   กำหนดสี ให้กับ   ปุ่ม
                   if (widget.currentDateTime.year == widget.now.year &&
                       widget.currentDateTime.month == widget.now.month) {
                     if (current == i) {
@@ -118,7 +124,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     // selectedDateIndex = 32;
                     isSelect = false;
                   }
-
+                  // *!                               ปุ่ม  วันที่   1, 2, 3, 4, 5......
                   return TextButton(
                     onPressed: isNull
                         ? null
@@ -136,6 +142,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         backgroundColor: backgroundSelected(i),
                         shape: CircleBorder(
                           side: BorderSide(
+                              // *!                               isSelect   รับค่ามาจาก
                               color: isSelect ? Colors.red : Colors.transparent,
                               width: 2),
                         )),
@@ -152,6 +159,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
             },
           ),
         ),
+        // *!                               Cancel     Ok   button
         Expanded(
           flex: 4,
           child: Row(
@@ -163,6 +171,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 child: Row(
                   children: [
                     Expanded(
+                      // *!                               Cancel
                       child: TextButton(
                         onPressed: () async {
                           Navigator.pop(context, widget.currentDateTime);
@@ -177,6 +186,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       ),
                     ),
                     Expanded(
+                        // *!                               Ok
                         child: TextButton(
                       onPressed: () async {
                         setState(() {
