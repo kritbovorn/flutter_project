@@ -7,11 +7,13 @@ class YearScreen extends StatefulWidget {
   final DateTime now;
   final Function(int) sendNewYear;
   final Function(bool) displayYearScreen;
+  final Function(DateTime) sendDefaultNow;
   const YearScreen({
     Key? key,
     required this.now,
     required this.sendNewYear,
     required this.displayYearScreen,
+    required this.sendDefaultNow,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class YearScreen extends StatefulWidget {
 
 class _YearScreenState extends State<YearScreen> {
   // late DateTimeRange yearRange;
+  late final DateTime defaultNow;
   late List<int> beforeYears;
   late List<int> afterYears;
   late List<int> yearLists;
@@ -34,6 +37,8 @@ class _YearScreenState extends State<YearScreen> {
   @override
   void initState() {
     super.initState();
+    // *!   ค่า   DateTime   ตอนแรก เปลี่ยนค่าไม่ได้
+    defaultNow = widget.now;
 
     startYear = 2;
     endYear = 5;
@@ -134,6 +139,8 @@ class _YearScreenState extends State<YearScreen> {
                         onPressed: () async {
                           setState(() {
                             isShowYearScreen = false;
+                            widget.displayYearScreen(isShowYearScreen);
+                            widget.sendDefaultNow(defaultNow);
                           });
                         },
                         child: Text(
@@ -152,8 +159,6 @@ class _YearScreenState extends State<YearScreen> {
                           isShowYearScreen = false;
                           widget.displayYearScreen(isShowYearScreen);
                         });
-                        debugPrint(
-                            'YearScreen : Line #151 ::: $isShowYearScreen');
                       },
                       child: Text(
                         'ตกลง',

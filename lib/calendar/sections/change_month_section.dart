@@ -10,12 +10,14 @@ class ChangeMonthSection extends StatefulWidget {
   final Function(DateTime) getPreviousMonth;
   final Function(DateTime) getNextMonth;
   final Function(bool) displayYearScreen;
+  final bool isShowYearScreen;
   const ChangeMonthSection({
     Key? key,
     required this.now,
     required this.getPreviousMonth,
     required this.getNextMonth,
     required this.displayYearScreen,
+    required this.isShowYearScreen,
   }) : super(key: key);
 
   @override
@@ -26,11 +28,13 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
   late DateTime previousMonth;
   late DateTime nextMonth;
 
-  bool isShowYearScreen = false;
+  // late bool isShowYearScreen;
   @override
   void initState() {
     super.initState();
     updateState();
+
+    // isShowYearScreen = widget.isShowYearScreen;
   }
 
   updateState() {
@@ -45,6 +49,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
 
   @override
   Widget build(BuildContext context) {
+    bool isShowYearScreen = widget.isShowYearScreen;
     return LayoutBuilder(
       builder: (context, constraints) {
         double padding = constraints.maxWidth * 0.02;
@@ -75,7 +80,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       getMonth(widget.now.month),
@@ -93,7 +98,7 @@ class _ChangeMonthSectionState extends State<ChangeMonthSection> {
                       style: TextStyle(
                         color: Constant.primaryColor,
                         fontSize: 18,
-                        height: 2.8,
+                        // height: 2.8,
                       ),
                     ),
                     Transform.rotate(

@@ -31,12 +31,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
   late int selectedDateIndex;
   late final int current;
   late DateTime newNow;
+  late final DateTime defaultNow;
 
   @override
   void initState() {
     super.initState();
-    current = widget.now.day;
-    // debugPrint('MainScreen : Line #39 ::: current ::: $current');
+    defaultNow = DateTime.now();
+    current = defaultNow.day;
+    debugPrint('MainScreen : Line #39 ::: current ::: $current');
     selectedDateIndex = widget.now.day;
     newNow =
         DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);

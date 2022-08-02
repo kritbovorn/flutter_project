@@ -140,13 +140,17 @@ class _CalendarState extends State<Calendar> {
                       displayYearScreen: (value) {
                         setState(() {
                           isShowYearScreen = value;
+                          updateState(now);
+                          debugPrint('Calendar : Line #143 ::: Want');
                         });
                       },
+                      isShowYearScreen: isShowYearScreen,
                     ),
                   ),
                   isShowYearScreen
                       ? Expanded(
                           flex: 19,
+                          // *!
                           child: YearScreen(
                             now: now,
                             sendNewYear: (y) {
@@ -160,6 +164,9 @@ class _CalendarState extends State<Calendar> {
                                 isShowYearScreen = value;
                                 updateState(now);
                               });
+                            },
+                            sendDefaultNow: (value) {
+                              now = value;
                             },
                           ),
                         )

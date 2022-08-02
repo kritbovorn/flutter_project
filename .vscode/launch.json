@@ -1,0 +1,30 @@
+
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "iPhone SE",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "481B576E-2B94-4AC6-B983-619C97CC54C0",
+        },
+        {
+            "name": "iPhone 13",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "CA56766A-2228-4ABC-B3F7-8850A7C10589"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": [
+                "iPhone SE",
+                "iPhone 13"
+            ],
+        }
+    ]
+}
